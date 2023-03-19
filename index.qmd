@@ -1,11 +1,1201 @@
 ---
-title: "uce2023-modulo3"
+title: "Estadística aplicada con R"
+subtitle: "Módulo 3: Análisis Exploratorio de Datos e introducción a `ggplot2`"
+title-slide-attributes:
+  data-background-image: images/logo.jpeg
+  data-background-size: contain
+  data-background-opacity: "0.2"
+author: 
+  - name: Mauricio Moreno, PhD
+    affiliations:
+      - Científico Bioestadístico en Bayer AG
+logo: images/logo.jpeg
+format: 
+  revealjs:
+    slide-number: true
+    width: 1366
+    preview-links: auto
+    touch: true
+    chalkboard:
+      theme: whiteboard
+      boardmarker-width: 4
+      buttons: false
+    revealjs-plugins:
+      - pointer
+editor: visual
 ---
 
-This is a Quarto website.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
 
-```{r}
-1 + 1
+## Introducción {.smaller}
+
+::: incremental
+
+-   El análisis exploratorio de datos (AED) es una herramienta bastante útil pero a menudo olvidada.
+
+-   Entre los muchos objetivos del AED, están:
+
+    -   Obtener una idea de la distribución de los datos
+    
+    -   Llevar a cabo un control de la calidad de los datos (valores anómalos u outliers, errores)
+    
+    -   Identificar observaciones perdidas y su severidad
+    
+    -   Identificar correlaciones entre variables
+    
+-   El AED es mayoritariamente visual. Por ello aprovecharemos esta oportunidad para llevar a cabo una introducción a la librería `ggplot2` y también haremos uso de los gráficos base de R cuando amerite el caso.
+
+-   Utilizaremos dos tablas de datos, los **pingüinos de Palmer** (librería `palmerpenguins`) y **rotXLS**, que utilizamos brevemente en el primer módulo.
+
+-   Utilizaremos librerías adicionales a lo largo de este módulo que serán debidamente descritas.
+
+:::
+
+
+# Introducción a `ggplot2`
+
+## `ggplot2`
+
+::: incremental
+
+-   `ggplot2` es una librería de gráficos de R creada por Hadley Wickham en 2005 como una opción alternativa a los gráficos base de R.
+
+-   Su funcionamiento se basa en añadir elementos a un gráfico capa por capa.
+
+-   Presenta varias ventajas, entre ellas:
+
+    -   Mayor versatilidad al integrar funciones predeterminadas que permiten cambiar entre tipos de gráficos fácil y rápidamente.
+    
+    -   Amplia variedad de paletas de color y estilos (útiles para crear gráficos profesionales y listos para publicación).
+    
+    -   Basta cantidad de librerías accesorias para gráficos especializados.
+:::
+
+## Función de mapeo 
+
+::: panel-tabset
+
+### Código
+
+```{r echo=T, eval=F, error=T, fig.align = 'center'}
+#| code-line-numbers: "1|2|4|5"
+library(palmerpenguins)
+library(ggplot2)
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, y = bill_depth_mm))
 ```
+
+### Gráfico
+
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+library(palmerpenguins)
+library(ggplot2)
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, y = bill_depth_mm))
+```
+
+:::
+
+
+## Geometrías
+
+::: panel-tabset
+
+### Código
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+#| code-line-numbers: "3"
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point()
+```
+
+### Gráfico
+
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+ggplot(penguins,
+       aes(x = bill_length_mm, 
+           y = bill_depth_mm)) +
+  geom_point()
+```
+
+:::
+
+## Geometrías {visibility="uncounted"}
+
+::: incremental
+
+-   Existen varias geometrías útiles para diversos tipos de gráficos
+
+    -   `geom_bar` para gráficos de barras
+    
+    -   `geom_line` para gráficos de lineas
+    
+    -   `geom_boxplot` para gráficos de caja y bigote
+    
+    -   `geom_histogram` para histogramas
+    
+    -   `geom_density` para densidades
+    
+    -   y muchas más, entre ellas, geometrías estadísticas
+
+:::
+
+
+## Geometrías {visibility="uncounted"}
+
+::: panel-tabset
+
+### Código
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+#| code-line-numbers: "3|4|5"
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(color = "cornflowerblue",
+             alpha = 0.7,
+             size = 3)
+```
+
+### Gráfico
+
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(color = "cornflowerblue",
+             alpha = 0.7,
+             size = 3)
+```
+
+:::
+
+## Geometrías {visibility="uncounted"}
+
+::: panel-tabset
+
+### Código
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+#| code-line-numbers: "1|2|3"
+ggplot(penguins,
+       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +
+  geom_point(alpha = 0.7,
+             size = 3)
+```
+
+
+### Gráfico
+
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+ggplot(penguins,
+       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +
+  geom_point(alpha = 0.7,
+             size = 3)
+```
+
+:::
+
+
+
+## Geometrías {visibility="uncounted"}
+
+::: panel-tabset
+
+### Código
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+#| code-line-numbers: "5"
+ggplot(penguins,
+       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +
+  geom_point(alpha = 0.7,
+             size = 3) +
+  geom_smooth(method = "lm")
+```
+
+### Gráfico
+
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+ggplot(penguins,
+       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +
+  geom_point(alpha = 0.7,
+             size = 3) +
+  geom_smooth(method = "lm")
+```
+
+:::
+
+## Escalas {visibility="uncounted"}
+
+::: panel-tabset
+
+### Código
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+#| code-line-numbers: "6|7"
+ggplot(penguins,
+       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +
+  geom_point(alpha = 0.7,
+             size = 3) +
+  geom_smooth(method = "lm") + 
+  scale_x_continuous(breaks = seq(30, 60, 5)) +
+  scale_y_continuous(breaks = seq(10, 24, 2))
+```
+
+### Gráfico
+
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+ggplot(penguins,
+       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +
+  geom_point(alpha = 0.7,
+             size = 3) +
+  geom_smooth(method = "lm") + 
+  scale_x_continuous(breaks = seq(30, 60, 5)) +
+  scale_y_continuous(breaks = seq(10, 24, 2))
+```
+
+:::
+
+## Paletas de color
+
+::: incremental
+
+-   Una de las razones por las cuales `ggplot2` es tan popular, es la relativa sencillez de usar distintas paletas de color.
+
+-   Al no ser un curso dedicado a visualización de datos, nos limitaremos a explorar la oferta de mis dos librerías preferidas para paletas de color con `ggplot2`.
+
+-   `viridis` ofrece 8 paletas de color basadas en secuencias de azul y amarillo que evitan en la medida de lo posible el color rojo. Es recomendada por ciertos Journals al ser amigable con personas daltónicas.
+
+-   `ggsci` ofrece varias paletas de color inspiradas en los colores usados por distintos journals (por ejemplo: *Nature*, *Lancet* entre otros), además de paletas inspiradas en series de televisión (por ejemplo: *Futurama*, *Rick & Morty* entre otros).
+
+
+:::
+
+## Paletas de color {visibility="uncounted"}
+
+::: panel-tabset
+
+### Código
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+#| code-line-numbers: "1|9"
+library(viridis)
+ggplot(penguins,
+       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +
+  geom_point(alpha = 0.7,
+             size = 3) +
+  geom_smooth(method = "lm") + 
+  scale_x_continuous(breaks = seq(30, 60, 5)) +
+  scale_y_continuous(breaks = seq(10, 24, 2)) +
+  scale_color_viridis(discrete = T)
+```
+
+### Gráfico
+
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+library(viridis)
+ggplot(penguins,
+       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +
+  geom_point(alpha = 0.7,
+             size = 3) +
+  geom_smooth(method = "lm") + 
+  scale_x_continuous(breaks = seq(30, 60, 5)) +
+  scale_y_continuous(breaks = seq(10, 24, 2)) +
+  scale_color_viridis(discrete = T)
+```
+
+:::
+
+
+## Paletas de color {visibility="uncounted"}
+
+::: panel-tabset
+
+### Código
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+#| code-line-numbers: "1|9"
+library(ggsci)
+ggplot(penguins,
+       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +
+  geom_point(alpha = 0.7,
+             size = 3) +
+  geom_smooth(method = "lm") + 
+  scale_x_continuous(breaks = seq(30, 60, 5)) +
+  scale_y_continuous(breaks = seq(10, 24, 2)) +
+  scale_color_futurama()
+```
+
+### Gráfico
+
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+library(ggsci)
+ggplot(penguins,
+       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +
+  geom_point(alpha = 0.7,
+             size = 3) +
+  geom_smooth(method = "lm") + 
+  scale_x_continuous(breaks = seq(30, 60, 5)) +
+  scale_y_continuous(breaks = seq(10, 24, 2)) +
+  scale_color_futurama()
+```
+
+:::
+
+
+## Gráficos de facetas
+
+::: panel-tabset
+
+### Código
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+#| code-line-numbers: "9"
+ggplot(penguins,
+       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +
+  geom_point(alpha = 0.7,
+             size = 3) +
+  geom_smooth(method = "lm") + 
+  scale_x_continuous(breaks = seq(30, 60, 5)) +
+  scale_y_continuous(breaks = seq(10, 24, 2)) +
+  scale_color_viridis(discrete = T) +
+  facet_wrap(~island)
+```
+
+### Gráfico
+
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+ggplot(penguins,
+       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +
+  geom_point(alpha = 0.7,
+             size = 3) +
+  geom_smooth(method = "lm") + 
+  scale_x_continuous(breaks = seq(30, 60, 5)) +
+  scale_y_continuous(breaks = seq(10, 24, 2)) +
+  scale_color_viridis(discrete = T) +
+  facet_wrap(~island)
+```
+
+:::
+
+## Etiquetas
+
+::: panel-tabset
+
+### Código
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+#| code-line-numbers: "10-15"
+ggplot(penguins,
+       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +
+  geom_point(alpha = 0.7,
+             size = 3) +
+  geom_smooth(method = "lm") + 
+  scale_x_continuous(breaks = seq(30, 60, 5)) +
+  scale_y_continuous(breaks = seq(10, 24, 2)) +
+  scale_color_viridis(discrete = T) +
+  facet_wrap(~island) +
+  labs(title = "Largo de pico vs. profundidad de pico",
+       subtitle = "Pingüinos de Palmer",
+       caption = "Gráfica propia",
+       x = "Largo del pico",
+       y = "Profundidad del pico",
+       color = "Especie")
+```
+
+### Gráfico
+
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+ggplot(penguins,
+       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +
+  geom_point(alpha = 0.7,
+             size = 3) +
+  geom_smooth(method = "lm") + 
+  scale_x_continuous(breaks = seq(30, 60, 5)) +
+  scale_y_continuous(breaks = seq(10, 24, 2)) +
+  scale_color_viridis(discrete = T) +
+  facet_wrap(~island) +
+  labs(title = "Largo de pico vs. profundidad de pico",
+       subtitle = "Pingüinos de Palmer",
+       caption = "Gráfica propia",
+       x = "Largo del pico",
+       y = "Profundidad del pico",
+       color = "Especie")
+```
+
+:::
+
+## Estilos
+
+::: panel-tabset
+
+### Código
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+#| code-line-numbers: "16"
+ggplot(penguins,
+       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +
+  geom_point(alpha = 0.7,
+             size = 3) +
+  geom_smooth(method = "lm") + 
+  scale_x_continuous(breaks = seq(30, 60, 5)) +
+  scale_y_continuous(breaks = seq(10, 24, 2)) +
+  scale_color_viridis(discrete = T) +
+  facet_wrap(~island) +
+  labs(title = "Largo de pico vs. profundidad de pico",
+       subtitle = "Pingüinos de Palmer",
+       caption = "Gráfica propia",
+       x = "Largo del pico",
+       y = "Profundidad del pico",
+       color = "Especie") +
+  theme_bw()
+```
+
+### Gráfico
+
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+ggplot(penguins,
+       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +
+  geom_point(alpha = 0.7,
+             size = 3) +
+  geom_smooth(method = "lm") + 
+  scale_x_continuous(breaks = seq(30, 60, 5)) +
+  scale_y_continuous(breaks = seq(10, 24, 2)) +
+  scale_color_viridis(discrete = T) +
+  facet_wrap(~island) +
+  labs(title = "Largo de pico vs. profundidad de pico",
+       subtitle = "Pingüinos de Palmer",
+       caption = "Gráfica propia",
+       x = "Largo del pico",
+       y = "Profundidad del pico",
+       color = "Especie") +
+  theme_bw()
+```
+
+:::
+
+## Gráficos como objetos
+
+::: panel-tabset
+
+### Código
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+#| code-line-numbers: "1|18-19"
+grafico1 <- ggplot(penguins,
+       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +
+  geom_point(alpha = 0.7,
+             size = 3) +
+  geom_smooth(method = "lm") + 
+  scale_x_continuous(breaks = seq(30, 60, 5)) +
+  scale_y_continuous(breaks = seq(10, 24, 2)) +
+  scale_color_viridis(discrete = T) +
+  facet_wrap(~island) +
+  labs(title = "largo de pico vs. Profundidad de pico",
+       subtitle = "Pingüinos de Palmer",
+       caption = "Gráfica propia",
+       x = "Largo del pico",
+       y = "Profundidad del pico",
+       color = "Especie") +
+  theme_bw()
+
+grafico2 <- grafico1 + theme_classic()
+grafico2
+```
+
+### Gráfico
+
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+grafico1 <- ggplot(penguins,
+       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +
+  geom_point(alpha = 0.7,
+             size = 3) +
+  geom_smooth(method = "lm") + 
+  scale_x_continuous(breaks = seq(30, 60, 5)) +
+  scale_y_continuous(breaks = seq(10, 24, 2)) +
+  scale_color_viridis(discrete = T) +
+  facet_wrap(~island) +
+  labs(title = "Profundidad vs. largo de pico",
+       subtitle = "Pingüinos de Palmer",
+       caption = "Gráfica propia",
+       x = "Largo del pico",
+       y = "Profundidad del pico",
+       color = "Especie") +
+  theme_bw()
+
+grafico2 <- grafico1 + theme_classic()
+grafico2
+```
+
+:::
+
+## Ejercicio 3.1 {.smaller}
+
+Con la ayuda del anterior código, realiza un gráfico de dispersión entre las variables `flipper_length_mm` y `body_mass_g` en facetas determinadas por la variable `sex`. Para explorar más opciones de las paletas de color y los estilos, puedes usar las siguientes expresiones:
+
+-   `viridis`:
+
+    -   `scale_color_viridis(discrete = T, option = "A")` donde el argumento `option` te permite escoger varias paletas (A: magma, B: inferno, C: plasma, D: viridis, E: cividis, F: rocket, G: mako y H: turbo)
+    
+-   `ggsci`:
+
+    -   Puedes variar la terminación del comando `scale_color_` con cualquiera de las siguientes opciones: `npg`, `aaas`, `nejm`, `simpsons`, `rickandmorty`.
+    
+-   Estilos:
+
+    -   Reemplaza la línea `theme_bw()` por cualquiera de las siguientes opciones `theme_gray()`, `theme_dark()`, `theme_minimal()`, `theme_classic()`
+    
+¿Notas algo raro en las facetas?
+
+::: footer
+
+Para mayor información, puedes revisar la documentación de `viridis` en [este enlace](https://sjmgarnier.github.io/viridis/reference/scale_viridis.html){target="_blank"}, de `ggsci` en [este enlace](https://cran.r-project.org/web/packages/ggsci/vignettes/ggsci.html){target="_blank"} y la de los estilos de `ggplot2` en [este otro enlace.](https://ggplot2.tidyverse.org/reference/ggtheme.html){target="_blank"}
+
+:::
+
+# Principios de Análisis Exploratorio de Datos (AED)
+
+## Datos perdidos {.smaller}
+
+::: incremental
+
+-   La perdida de datos es común en casi todo experimento, sobre todo en aquellos de naturaleza observacional.
+
+-   El primer paso que recomiendo en un análisis exploratorio, es checar si existen o no datos perdidos.
+
+-   Esto por cuanto así se prevee si los métodos de inferencia a usarse necesitan o no ser corregidos.
+
+-   Únicamente cuando la severidad de la pérdida de datos es muy grande aconsejo a recurrir a estas dos opciones (en orden de complejidad estadística de menor a mayor)
+
+    -   Repetir el experimento
+    
+    -   Llevar a cabo imputación de datos
+
+-   En este curso vamos a limitarnos a usar métodos de análisis corregidos cuando estemos ante la presencia de datos perdidos ya que la imputación de datos requiere de conocimientos teóricos extensos acerca de los tipos de mecanismos de pérdida de datos.
+
+-   **EVITAR** el reemplazar los valores perdidos por ceros. Esta suele ser una práctica más o menos común pero que introduce mayores problemas que los que "soluciona".
+
+-   En resumen, no hay que temer el contar con datos perdidos, siempre y cuando estos no sean masivos.
+
+:::
+
+
+
+## Datos perdidos {visibility="uncounted" autoanimate="true"}
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+#| code-line-numbers: "1|2"
+library(finalfit)
+ff_glimpse(penguins)
+```
+
+## Datos perdidos {visibility="uncounted" autoanimate="true"}
+
+```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4}
+library(finalfit)
+ff_glimpse(penguins)
+```
+
+## Datos perdidos {visibility="uncounted" autoanimate="true"}
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+#| code-line-numbers: "3"
+library(finalfit)
+ff_glimpse(penguins)
+missing_plot(penguins)
+```
+
+## Datos perdidos {visibility="uncounted" autoanimate="true"}
+
+```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=6}
+missing_plot(penguins)
+```
+
+## Datos perdidos {visibility="uncounted"}
+
+::: panel-tabset
+
+### Código
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+#| code-line-numbers: "1|2"
+sub_penguins <- na.omit(penguins)
+ggplot(sub_penguins,
+       aes(x = flipper_length_mm, y = body_mass_g, colour = species)) +
+  geom_point(alpha = 0.7,
+             size = 3) +
+  geom_smooth(method = "lm") + 
+  scale_x_continuous(breaks = seq(150, 250, 10)) +
+  scale_y_continuous(breaks = seq(2500, 7000, 500)) +
+  scale_color_viridis(discrete = T) +
+  facet_wrap(~sex) +
+  labs(title = "Largo de aleta vs. peso",
+       subtitle = "Pingüinos de Palmer",
+       caption = "Gráfica propia",
+       x = "Largo de aleta",
+       y = "Peso",
+       color = "Especie") +
+  theme_bw()
+```
+
+### Gráfico
+
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+sub_penguins <- na.omit(penguins)
+ggplot(sub_penguins,
+       aes(x = flipper_length_mm, y = body_mass_g, colour = species)) +
+  geom_point(alpha = 0.7,
+             size = 3) +
+  geom_smooth(method = "lm") + 
+  scale_x_continuous(breaks = seq(150, 250, 10)) +
+  scale_y_continuous(breaks = seq(2500, 7000, 500)) +
+  scale_color_viridis(discrete = T) +
+  facet_wrap(~sex) +
+  labs(title = "Largo de aleta vs. peso",
+       subtitle = "Pingüinos de Palmer",
+       caption = "Gráfica propia",
+       x = "Largo de aleta",
+       y = "Peso",
+       color = "Especie") +
+  theme_bw()
+```
+
+:::
+
+## Observaciones anormales (outliers) {.smaller}
+
+::: incremental
+
+-   Un outlier puede definirse como aquella observación que dista considerablemente de la **mediana** de una población.
+
+-   Pueden deberse a errores en la toma de mediciones [o valores que realmente existen.]{.fragment}
+
+-   En estadística, un outlier es definido de acuerdo al criterio del Rango Intercuartílico (RIC o *IQR* en inglés).
+
+-   Este criterio establece que toda observación por encima del tercer cuartil + 1.5 veces el RIC o por debajo del primer cuartil - 1.5 veces el RIC es considerada como outlier.
+
+:::
+
+. . .
+
+$$
+I=\left[C_{0.25}-1.5 \times RIC ,\,C_{0.75}+1.5 \times RIC \right]
+$$
+
+::: incremental
+
+-   Donde el RIC es sencillamente la diferencia entre el primer y el tercer cuartil de una muestra.
+
+-   Este método es precisamente la base para los gráficos de caja y bigote.
+
+:::
+
+## Gráficos de caja y bigote
+
+![](images/box.jpg){fig-align="center"}
+
+::: incremental
+
+-   Un gráfico de caja y bigote es el resumen de 5 cantidades de importancia para explorar una distribución: [la mediana, los cuantiles 1 y 3 y los valores mínimo y máximo de una distribución en función del RIC]{.fragment}
+
+:::
+
+::: footer
+
+Imagen de autoría de [Michael Galarnyk](https://builtin.com/data-science/boxplot){target="_blank"}
+
+:::
+
+## Gráficos de caja y bigote en R base
+
+::: panel-tabset
+
+### Código
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+#| code-line-numbers: "1|2-4|5|6"
+par(mfrow = c(2, 2))
+plot(bill_depth_mm ~ island, data = penguins)
+plot(bill_depth_mm ~ sex, data = penguins)
+plot(bill_depth_mm ~ species, data = penguins)
+plot.new()
+par(mfrow = c(1, 1))
+```
+
+### Gráfico
+
+```{r echo=F, eval=T, error=T, fig.align = 'center', fig.height=6, fig.width=8}
+par(mfrow = c(2, 2))
+boxplot(bill_depth_mm ~ island, data = penguins)
+boxplot(bill_depth_mm ~ sex, data = penguins)
+boxplot(bill_depth_mm ~ species, data = penguins)
+plot.new()
+par(mfrow = c(1, 1))
+```
+
+:::
+
+## Gráficos de caja y bigote en R base {visibility="uncounted"}
+
+::: incremental
+
+-   Los gráficos base de R son de rápida implementación.
+
+-   Generalmente los uso para dar vistazos rápidos a los datos.
+
+-   Pueden por supuesto ser usados para productos finales de publicación, pero la sintaxis para dar formato y exportarlos es un tanto confusa (a mi parecer).
+
+-   Tienen sus limitaciones, [**¿qué tal si en este caso me hubiese gustado realizar un gráfico por facetas para ver más variables categóricas al mismo tiempo?**]{.fragment}
+
+:::
+
+## Gráficos de caja y bigote en `ggplot2`
+
+::: panel-tabset
+
+### Código
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+#| code-line-numbers: "1|2|3|4|5|6|7"
+sub_penguins <- na.omit(penguins)
+ggplot(sub_penguins,
+       aes(y = bill_depth_mm, x = species, fill = species)) +
+  geom_boxplot(outlier.fill = "red",
+               outlier.shape = 23) +
+  facet_grid(~sex~island) + 
+  theme(legend.position = "none")
+```
+
+### Gráfico
+
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+sub_penguins <- na.omit(penguins)
+ggplot(sub_penguins,
+       aes(y = bill_depth_mm, x = species, fill = species)) +
+  geom_boxplot(outlier.fill = "red",
+               outlier.shape = 23) +
+  facet_grid(~sex~island) + 
+  theme(legend.position = "none")
+```
+
+:::
+
+## Ejercicio 3.2
+
+Usando como base el código del ejemplo anterior, realiza un gráfico de facetas con la variable `body_mass_g`. Mira si existen o no outliers. ¿Crees conveniente removerlos?
+
+## Y ahora, ¿qué hago con los outliers?
+
+![](images/gatito.jpg){fig-align="center"}
+
+## Y ahora, ¿qué hago con los outliers? {visibility="uncounted" .smaller}
+
+::: incremental
+
+-   El remover outliers no se aconseja antes de llevar a cabo análisis de inferencia estadística.
+
+-   Para remover outliers antes de analizar propiamente los datos, se necesita tener certeza de las razones por las cuales estos fueron registrados:
+
+    -   Fallas comprobadas en el equipo de medición
+    
+    -   Errores al escribir las mediciones en el medio de registro (libro de laboratorio, base de datos)
+    
+    -   Falencias en las técnicas, metodologías o materiales que ayudaron en la toma de las observaciones (reactivos expirados, protocolos mal interpretados o descontinuados)
+    
+    -   Si las anteriores no se cumplen, tener respaldo bibliográfico o experiencia de que el valor del outlier es improbable en la población sujeto de estudio.
+    
+-   Muchas veces, los aparentes outliers no tienen mayor efecto en las inferencias que se realicen. Y en los casos extremos de considerar su remoción, se puede recurrir a transformaciones de los datos. [En otras palabras, el último recurso es removerlos.]{.fragment}
+
+-    Cuando llegado el caso, no existe otra opción, **debería** ser una obligación el reportar las razones para no considerarlos en el análisis [(**integridad científica**).]{.fragment}
+
+:::
+
+## ¿Cómo remuevo outliers? {.smaller}
+
+::: incremental
+
+-   La respuesta más simple: borrarlos de la base de datos antes de cargarla en R.
+
+-   Sin embargo, a veces trabajamos con tablas de datos extensas, y la remoción manual puede ser larga, tediosa y sujeta a errores que podrían empeorar la situación.
+
+-   Para ilustrar cómo hacerlo en R, vamos a recurrir a un ejemplo más sencillo donde solo lidiemos con una variable categórica a la vez. Así, veamos únicamente al caso de las variables `bill_length_mm` y `species`
+:::
+
+. . .
+
+```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4, fig.width=5}
+boxplot(bill_length_mm ~ species, data = penguins)
+```
+
+
+## ¿Cómo remuevo outliers? {visibility="uncounted" autoanimate="true"}
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4, fig.width=5}
+#| code-line-numbers: "1|2|3"
+outliers <- boxplot(bill_length_mm ~ species, data = sub_penguins, plot = F)$out
+x <- sub_penguins
+x <- x[-which(x$bill_length_mm %in% outliers), ]
+```
+
+## ¿Cómo remuevo outliers? {visibility="uncounted" autoanimate="true"}
+
+```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4, fig.width=5}
+outliers <- boxplot(bill_length_mm ~ species, data = sub_penguins, plot = F)$out
+x <- sub_penguins
+x <- x[-which(x$bill_length_mm %in% outliers), ]
+boxplot(bill_length_mm ~ species, data = x)
+```
+
+## Ejercicio 3.3
+
+Remueve el outlier en el boxplot que se visualiza en la siguiente línea de código de R
+
+```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4, fig.width=5}
+plot(bill_depth_mm ~ species, data = penguins)
+```
+
+## Relaciones lineales {.smaller}
+
+::: incremental
+
+-   El dar un vistazo a relaciones lineales entre variables continuas también nos puede dar una idea de la presencia de outliers.
+
+-   Adicionalmente, nos permite visualizar arreglos/patrones en los datos que responden a la influencia de variables de agrupación (en el ejemplo de los pingüinos ya vimos que las especies y las islas determinan algún tipo de arreglo).
+
+-   También nos dan una idea de las correlaciones entre las variables. Esto es de mayor importancia en los casos que tenemos en mente llevar a cabo análisis multivariables.
+
+-   Por ejemplo, en análisis de covarianza (cuando una o más variables explanatorias son continuas), no tiene sentido el incluir variables altamente correlacionadas entre sí.
+
+-   Para esto, la forma más sencilla es llevar a cabo gráficos de dispersión para tantos pares posibles de combinaciones de variables continuas tengamos.
+
+-   Esto obviamente sería tedioso y propenso a errores si lo llevamos a cabo de manera manual.
+
+-   Afortunadamente R nos ofrece varias formas de llevar a cabo matrices de gráficos de dispersión
+    
+
+:::
+
+
+## Matrices de dispersión en R base {visibility="uncounted"}
+
+::: panel-tabset
+
+### Código
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+#| code-line-numbers: "1-4|5"
+matriz_penguins <- penguins[,c("bill_length_mm",
+                               "bill_depth_mm",
+                               "flipper_length_mm",
+                               "body_mass_g")]
+pairs(matriz_penguins)
+```
+
+### Gráfico
+
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+matriz_penguins <- penguins[,c("bill_length_mm",
+                               "bill_depth_mm",
+                               "flipper_length_mm",
+                               "body_mass_g")]
+pairs(matriz_penguins)
+```
+
+:::
+
+
+## Matrices de dispersión en `ggplot2` {visibility="uncounted"}
+
+::: panel-tabset
+
+### Código
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+#| code-line-numbers: "1|2"
+library(GGally)
+ggpairs(matriz_penguins)
+```
+
+### Gráfico
+
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+library(GGally)
+ggpairs(matriz_penguins)
+```
+
+:::
+
+## Ejercicio 3.4 {.smaller}
+
+Realiza una matriz de dispersión usando los datos en el archivo excel "rotXLS.xlsx" que usamos en la primera sesión. Los datos contenidos en este archivo corresponden al conteo de casos de rotavirus en Berlín desde el 2001 hasta el 2020. Las variables contenidas en este archivo son:
+
+::: columns
+::: {.column width="50%"}
+-   `date`: fecha de cierre de la toma de datos
+
+-   `cases`: número de casos de rotavirus en la semana
+
+-   `week`: semana epidemiológica
+
+-   `incidence`: número de casos/100000 habitantes
+
+-   `FM`: media diaria de velocidad del viento (m/s)
+
+-   `RSK`: media diaria de lluvia (mm)
+:::
+
+::: {.column width="50%"}
+-   `SHK_TAG`: media diaria de nieve (cm)
+
+-   `PM`: media diaria de presión atmosférica (hPa)
+
+-   `TMK`: media diaria de temperatura (°C)
+
+-   `TXK`: media diaria de temperatura máxima (°C)
+
+-   `TNK`: media diaria de temperatura mínima (°C)
+
+-   `UPM`: media diaria de humedad relativa (%)
+:::
+:::
+
+Deja fuera de la matriz las variables `date`, `incidence` y `week`. ¿Cuáles variables crees que serían mejores para una inferencia estadística acerca de la relación clima-casos de rotavirus?
+
+```{r echo=T, eval=F, error=T, fig.align = 'center'}
+library(readxl)                           
+rot_berlin <- read_excel("rotXLS.xlsx")
+```
+
+## Histogramas
+
+::: incremental
+
+-   Un histograma es un gráfico estadístico que divide una variable continua en un determinado número de rangos y luego cuenta el número de veces que los datos caen en cada uno de ellos para producir una barra por rango.
+
+-   Sirve como un diagnóstico de la distribución de una muestra.
+
+-   Desde la perspectiva del AED, nos da una idea visual de si las variables se alejan de la normalidad.
+
+    -   Esto último podría dar indicaciones de si es necesaria una transformación.
+    
+    -   ¡Pero!... no es recomendable empezar transformando variables directamente hasta no conducir un análisis formal.
+
+:::
+
+## Histogramas en R base y `ggplot2` {.scrollable}
+
+::: columns
+::: {.column width="50%" .fragment}
+```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4}
+hist(penguins$bill_length_mm)
+```
+:::
+
+::: {.column width="50%" .fragment}
+```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4}
+hist(penguins$bill_length_mm, breaks = 50)
+```
+:::
+:::
+
+
+::: columns
+::: {.column width="50%" .fragment}
+```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4}
+ggplot(penguins, aes(x = bill_length_mm)) +
+  geom_histogram()
+```
+:::
+
+::: {.column width="50%" .fragment}
+```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4}
+ggplot(penguins, aes(x = bill_length_mm)) +
+  geom_histogram(bins = 50)
+```
+:::
+:::
+
+## Ejercicio 3.5
+
+Realiza histogramas para las variables `cases` y `TMK` de la tabla de datos de casos de rotavirus en Berlín.
+
+## Más exploración
+
+::: incremental
+
+-   Lo que hemos revisado hasta el momento, son las técnicas más frecuentemente usadas para AED.
+
+-   Sin embargo, existen librerías de R que permiten también hacer AED de una manera automática y más accesible.
+
+-   Como ejemplos, haremos un enfoque en dos librerías que hacen uso de Shiny para brindar esta experiencia al usuario. Estas son `explore` y `dataxray`
+
+:::
+
+. . .
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+library(explore)
+explore(penguins)
+
+install.packages("devtools")
+install.packages("flexdashboard")
+devtools::install_github("agstn/dataxray")
+library(dataxray)
+report_xray(data = penguins, data_name = 'penguins', study = "ggplot2")
+```
+
+# ¡Antes de terminar por hoy!
+
+## Gráficos de barras
+
+```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4}
+ggplot(penguins,
+       aes(x = species)) +
+  geom_bar()
+```
+
+## Gráficos de barras con porcentajes
+
+```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4}
+ggplot(penguins,
+       aes(x = species,
+           y = ..count../sum(..count..))) +
+  geom_bar() +
+  scale_y_continuous(labels = scales::percent)
+```
+
+## Gráficos de barras apiladas
+
+```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4}
+ggplot(penguins,
+       aes(x = island,
+           fill = species)) +
+  geom_bar(position = "stack") 
+```
+
+## Gráficos de líneas
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+library(readxl)                           
+rot_berlin <- read_excel("rotXLS.xlsx")
+```
+
+```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4}
+ggplot(rot_berlin,
+       aes(x = date,
+           y = cases)) +
+  geom_line() 
+```
+
+## Gráficos de líneas con estadísticos descriptivos
+
+
+::: panel-tabset
+
+### Código
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+library(lubridate)
+library(dplyr)
+
+rot_berlin$mes <- month(rot_berlin$date)
+rot_berlin$year <- year(rot_berlin$date)
+temp_berlin <- rot_berlin %>%
+  group_by(mes) %>%
+  summarise(n = n(),
+            media = mean(TMK),
+            desv = sd(TMK),
+            s.err = desv/sqrt(n)) 
+
+grafico3 <- ggplot(temp_berlin,
+       aes(x = factor(mes),
+           y = media,
+           group = 1)) +
+  geom_point() +
+  geom_line() +
+  geom_errorbar(aes(ymin = media - s.err,
+                    ymax = media + s.err),
+                width = .3)
+grafico3
+```
+
+### Gráfico
+
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+library(lubridate)
+library(dplyr)
+
+rot_berlin$mes <- month(rot_berlin$date)
+rot_berlin$year <- year(rot_berlin$date)
+temp_berlin <- rot_berlin %>%
+  group_by(mes) %>%
+  summarise(n = n(),
+            media = mean(TMK),
+            desv = sd(TMK),
+            s.err = desv/sqrt(n)) 
+
+grafico3 <- ggplot(temp_berlin,
+       aes(x = factor(mes),
+           y = media,
+           group = 1)) +
+  geom_point() +
+  geom_line() +
+  geom_errorbar(aes(ymin = media - s.err,
+                    ymax = media + s.err),
+                width = .3)
+grafico3
+```
+
+:::
+
+## Combinando y exportando gráficos de `ggplot2`
+
+::: incremental
+
+-   Un reto que hemos todos encontrado alguna vez es el de combinar varios gráficos en uno solo.
+
+-   Esto requiere paciencia y el uso de software externo (llámese CorelDraw, Adobe Illustrator, PowerPoint o incluso Paint).
+
+-   La librería complementaria `patchwork` nos permite combinar gráficos de `ggplot2` de una manera sencilla y rápida.
+
+-   Además, gracias a la función `ggsave` de `ggplot2` podemos exportar fácilmente nuestros gráficos sin requerir (ojalá) a la ayuda de software externo para dar retoques finales a estos gráficos. 
+
+:::
+
+## Combinando gráficos con `patchwork`
+
+::: panel-tabset
+
+### Código
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+library(patchwork)
+graficofinal <- (grafico1 | grafico2) / grafico3
+graficofinal + plot_annotation(tag_levels = 'A')
+```
+
+### Gráfico
+
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+library(patchwork)
+graficofinal <- (grafico1 | grafico2) / grafico3
+graficofinal + plot_annotation(tag_levels = 'A')
+```
+
+:::
+
+::: footer
+Para más información de las funciones y utilidades de `patchwork` puedes visitar la [página oficial](https://patchwork.data-imaginist.com/){target="_blank"} con su documentación y ejemplos.
+:::
+
+## Exportando gráficos de `ggplot` {.scrollable}
+
+```{r echo=T, eval=T, error=T, fig.align = 'center'}
+graficofinal_estavezsi <- graficofinal + plot_annotation(tag_levels = 'A')
+ggsave("grafico.png", plot = graficofinal_estavezsi)
+```
+
+![](images/grafico.png){fig-align="center"}
+
+
+# ¡Gracias!
