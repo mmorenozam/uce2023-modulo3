@@ -221,7 +221,7 @@
     "href": "index.html#gráficos-como-objetos",
     "title": "Estadística aplicada con R",
     "section": "Gráficos como objetos",
-    "text": "Gráficos como objetos\n\nCódigoGráfico\n\n\n\ngrafico1 <- ggplot(penguins,\n       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +\n  geom_point(alpha = 0.7,\n             size = 3) +\n  geom_smooth(method = \"lm\") + \n  scale_x_continuous(breaks = seq(30, 60, 5)) +\n  scale_y_continuous(breaks = seq(10, 24, 2)) +\n  scale_color_viridis(discrete = T) +\n  facet_wrap(~island) +\n  labs(title = \"largo de pico vs. Profundidad de pico\",\n       subtitle = \"Pingüinos de Palmer\",\n       caption = \"Gráfica propia\",\n       x = \"Largo del pico\",\n       y = \"Profundidad del pico\",\n       color = \"Especie\") +\n  theme_bw()\n\ngrafico2 <- grafico1 + theme_classic()\ngrafico2"
+    "text": "Gráficos como objetos\n\nCódigoGráfico\n\n\n\ngrafico1 <- ggplot(penguins,\n       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +\n  geom_point(alpha = 0.7,\n             size = 3) +\n  geom_smooth(method = \"lm\") + \n  scale_x_continuous(breaks = seq(30, 60, 5)) +\n  scale_y_continuous(breaks = seq(10, 24, 2)) +\n  scale_color_viridis(discrete = T) +\n  facet_wrap(~island) +\n  labs(title = \"Largo de pico vs. Profundidad de pico\",\n       subtitle = \"Pingüinos de Palmer\",\n       caption = \"Gráfica propia\",\n       x = \"Largo del pico\",\n       y = \"Profundidad del pico\",\n       color = \"Especie\") +\n  theme_bw()\n\ngrafico2 <- grafico1 + theme_classic()\ngrafico2"
   },
   {
     "objectID": "index.html#datos-perdidos",
