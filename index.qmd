@@ -1195,7 +1195,7 @@ graficofinal_estavezsi <- graficofinal + plot_annotation(tag_levels = 'A')
 ggsave("grafico.png", plot = graficofinal_estavezsi)
 ```
 
-![](images/grafico.png){fig-align="center"}
+![](images/out.png){fig-align="center"}
 
 
 # ¡Gracias!

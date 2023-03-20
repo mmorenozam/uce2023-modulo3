@@ -14,81 +14,11 @@
     "text": "ggplot2\n\n\nggplot2 es una librería de gráficos de R creada por Hadley Wickham en 2005 como una opción alternativa a los gráficos base de R.\nSu funcionamiento se basa en añadir elementos a un gráfico capa por capa.\nPresenta varias ventajas, entre ellas:\n\nMayor versatilidad al integrar funciones predeterminadas que permiten cambiar entre tipos de gráficos fácil y rápidamente.\nAmplia variedad de paletas de color y estilos (útiles para crear gráficos profesionales y listos para publicación).\nBasta cantidad de librerías accesorias para gráficos especializados."
   },
   {
-    "objectID": "index.html#funciones-básicas-de-ggplot2",
-    "href": "index.html#funciones-básicas-de-ggplot2",
-    "title": "Estadística aplicada con R",
-    "section": "Funciones básicas de ggplot2",
-    "text": "Funciones básicas de ggplot2\nFunción de mapeo\n\nlibrary(palmerpenguins)\nlibrary(ggplot2)\n\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, y = bill_depth_mm))"
-  },
-  {
-    "objectID": "index.html#funciones-básicas-de-ggplot2-1",
-    "href": "index.html#funciones-básicas-de-ggplot2-1",
-    "title": "Estadística aplicada con R",
-    "section": "Funciones básicas de ggplot2",
-    "text": "Funciones básicas de ggplot2\nFunción de mapeo\n\nlibrary(palmerpenguins)\nlibrary(ggplot2)\n\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, y = bill_depth_mm))"
-  },
-  {
     "objectID": "index.html#función-de-mapeo",
     "href": "index.html#función-de-mapeo",
     "title": "Estadística aplicada con R",
     "section": "Función de mapeo",
     "text": "Función de mapeo\n\nCódigoGráfico\n\n\n\nlibrary(palmerpenguins)\nlibrary(ggplot2)\n\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, y = bill_depth_mm))"
-  },
-  {
-    "objectID": "index.html#función-de-mapeo-autoanimatetrue-visibilityuncounted",
-    "href": "index.html#función-de-mapeo-autoanimatetrue-visibilityuncounted",
-    "title": "Estadística aplicada con R",
-    "section": "Función de mapeo {autoanimate=“true”, visibility=“uncounted”}",
-    "text": "Función de mapeo {autoanimate=“true”, visibility=“uncounted”}\n\nlibrary(palmerpenguins)\nlibrary(ggplot2)\n\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, y = bill_depth_mm))"
-  },
-  {
-    "objectID": "index.html#función-de-mapeo-1",
-    "href": "index.html#función-de-mapeo-1",
-    "title": "Estadística aplicada con R",
-    "section": "Función de mapeo",
-    "text": "Función de mapeo\n\nlibrary(palmerpenguins)\nlibrary(ggplot2)\n\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, y = bill_depth_mm))"
-  },
-  {
-    "objectID": "index.html#geometrias",
-    "href": "index.html#geometrias",
-    "title": "Estadística aplicada con R",
-    "section": "Geometrias",
-    "text": "Geometrias\n\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +\n  geom_point()"
-  },
-  {
-    "objectID": "index.html#geometrias-1",
-    "href": "index.html#geometrias-1",
-    "title": "Estadística aplicada con R",
-    "section": "Geometrias",
-    "text": "Geometrias\n\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +\n  geom_point()"
-  },
-  {
-    "objectID": "index.html#geometrias-2",
-    "href": "index.html#geometrias-2",
-    "title": "Estadística aplicada con R",
-    "section": "Geometrias",
-    "text": "Geometrias\n\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +\n  geom_point(color = \"cornflowerblue\",\n             alpha = 0.7,\n             size = 3)"
-  },
-  {
-    "objectID": "index.html#geometrias-3",
-    "href": "index.html#geometrias-3",
-    "title": "Estadística aplicada con R",
-    "section": "Geometrias",
-    "text": "Geometrias\n\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +\n  geom_point(color = \"cornflowerblue\",\n             alpha = 0.7,\n             size = 3)"
-  },
-  {
-    "objectID": "index.html#geometrias-4",
-    "href": "index.html#geometrias-4",
-    "title": "Estadística aplicada con R",
-    "section": "Geometrias",
-    "text": "Geometrias\n\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +\n  geom_point(alpha = 0.7,\n             size = 3)"
-  },
-  {
-    "objectID": "index.html#geometrias-5",
-    "href": "index.html#geometrias-5",
-    "title": "Estadística aplicada con R",
-    "section": "Geometrias",
-    "text": "Geometrias\n\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +\n  geom_point(alpha = 0.7,\n             size = 3)"
   },
   {
     "objectID": "index.html#geometrías",
@@ -126,53 +56,11 @@
     "text": "Geometrías\n\nCódigoGráfico\n\n\n\nggplot(penguins,\n       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +\n  geom_point(alpha = 0.7,\n             size = 3) +\n  geom_smooth(method = \"lm\")"
   },
   {
-    "objectID": "index.html#geometrías-5",
-    "href": "index.html#geometrías-5",
-    "title": "Estadística aplicada con R",
-    "section": "Geometrías",
-    "text": "Geometrías\n\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +\n  geom_point(alpha = 0.7,\n             size = 3)"
-  },
-  {
-    "objectID": "index.html#geometrías-6",
-    "href": "index.html#geometrías-6",
-    "title": "Estadística aplicada con R",
-    "section": "Geometrías",
-    "text": "Geometrías\n\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +\n  geom_point(alpha = 0.7,\n             size = 3) +\n  geom_smooth(method = \"lm\")"
-  },
-  {
-    "objectID": "index.html#geometrías-7",
-    "href": "index.html#geometrías-7",
-    "title": "Estadística aplicada con R",
-    "section": "Geometrías",
-    "text": "Geometrías\n\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +\n  geom_point(alpha = 0.7,\n             size = 3) +\n  geom_smooth(method = \"lm\")"
-  },
-  {
-    "objectID": "index.html#geometrías-8",
-    "href": "index.html#geometrías-8",
-    "title": "Estadística aplicada con R",
-    "section": "Geometrías",
-    "text": "Geometrías\n\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +\n  geom_point(alpha = 0.7,\n             size = 3) +\n  geom_smooth(method = \"lm\")"
-  },
-  {
     "objectID": "index.html#escalas",
     "href": "index.html#escalas",
     "title": "Estadística aplicada con R",
     "section": "Escalas",
     "text": "Escalas\n\nCódigoGráfico\n\n\n\nggplot(penguins,\n       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +\n  geom_point(alpha = 0.7,\n             size = 3) +\n  geom_smooth(method = \"lm\") + \n  scale_x_continuous(breaks = seq(30, 60, 5)) +\n  scale_y_continuous(breaks = seq(10, 24, 2))"
-  },
-  {
-    "objectID": "index.html#escalas-1",
-    "href": "index.html#escalas-1",
-    "title": "Estadística aplicada con R",
-    "section": "Escalas",
-    "text": "Escalas\n\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +\n  geom_point(alpha = 0.7,\n             size = 3) +\n  geom_smooth(method = \"lm\") + \n  scale_x_continuous(breaks = seq(30, 60, 5)) +\n  scale_y_continuous(breaks = seq(10, 24, 2))"
-  },
-  {
-    "objectID": "index.html#etiquetas",
-    "href": "index.html#etiquetas",
-    "title": "Estadística aplicada con R",
-    "section": "Etiquetas",
-    "text": "Etiquetas\n\nCódigoGráfico\n\n\n\nggplot(penguins,\n       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +\n  geom_point(alpha = 0.7,\n             size = 3) +\n  geom_smooth(method = \"lm\") + \n  scale_x_continuous(breaks = seq(30, 60, 5)) +\n  scale_y_continuous(breaks = seq(10, 24, 2)) +\n  scale_color_viridis(discrete = T) +\n  facet_wrap(~island) +\n  labs(title = \"Largo de pico vs. Profundidad de pico\",\n       subtitle = \"Pingüinos de Palmer\",\n       caption = \"Gráfica propia\",\n       x = \"Largo del pico\",\n       y = \"Profundidad del pico\",\n       color = \"Especie\")"
   },
   {
     "objectID": "index.html#paletas-de-color",
@@ -196,18 +84,18 @@
     "text": "Paletas de color\n\nCódigoGráfico\n\n\n\nlibrary(ggsci)\nggplot(penguins,\n       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +\n  geom_point(alpha = 0.7,\n             size = 3) +\n  geom_smooth(method = \"lm\") + \n  scale_x_continuous(breaks = seq(30, 60, 5)) +\n  scale_y_continuous(breaks = seq(10, 24, 2)) +\n  scale_color_futurama()"
   },
   {
-    "objectID": "index.html#ejercicio-3.1",
-    "href": "index.html#ejercicio-3.1",
-    "title": "Estadística aplicada con R",
-    "section": "Ejercicio 3.1",
-    "text": "Ejercicio 3.1\nCon la ayuda del anterior código, realiza un gráfico de dispersión entre las variables flipper_length_mm y body_mass_g en facetas determinadas por la variable sex. Para explorar más opciones de las paletas de color y los estilos, puedes usar las siguientes expresiones:\n\nviridis:\n\nscale_color_viridis(discrete = T, option = \"A\") donde el argumento option te permite escoger varias paletas (A: magma, B: inferno, C: plasma, D: viridis, E: cividis, F: rocket, G: mako y H: turbo)\n\nggsci:\n\nPuedes variar la terminación del comando scale_color_ con cualquiera de las siguientes opciones: npg, aaas, nejm, simpsons, rickandmorty.\n\nEstilos:\n\nReemplaza la línea theme_bw() por cualquiera de las siguientes opciones theme_gray(), theme_dark(), theme_minimal(), theme_classic()\n\n\n¿Notas algo raro en las facetas?\n\nPara mayor información, puedes revisar la documentación de viridis en este enlace, de ggsci en este enlace y la de los estilos de ggplot2 en este otro enlace."
-  },
-  {
     "objectID": "index.html#gráficos-de-facetas",
     "href": "index.html#gráficos-de-facetas",
     "title": "Estadística aplicada con R",
     "section": "Gráficos de facetas",
     "text": "Gráficos de facetas\n\nCódigoGráfico\n\n\n\nggplot(penguins,\n       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +\n  geom_point(alpha = 0.7,\n             size = 3) +\n  geom_smooth(method = \"lm\") + \n  scale_x_continuous(breaks = seq(30, 60, 5)) +\n  scale_y_continuous(breaks = seq(10, 24, 2)) +\n  scale_color_viridis(discrete = T) +\n  facet_wrap(~island)"
+  },
+  {
+    "objectID": "index.html#etiquetas",
+    "href": "index.html#etiquetas",
+    "title": "Estadística aplicada con R",
+    "section": "Etiquetas",
+    "text": "Etiquetas\n\nCódigoGráfico\n\n\n\nggplot(penguins,\n       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +\n  geom_point(alpha = 0.7,\n             size = 3) +\n  geom_smooth(method = \"lm\") + \n  scale_x_continuous(breaks = seq(30, 60, 5)) +\n  scale_y_continuous(breaks = seq(10, 24, 2)) +\n  scale_color_viridis(discrete = T) +\n  facet_wrap(~island) +\n  labs(title = \"Largo de pico vs. Profundidad de pico\",\n       subtitle = \"Pingüinos de Palmer\",\n       caption = \"Gráfica propia\",\n       x = \"Largo del pico\",\n       y = \"Profundidad del pico\",\n       color = \"Especie\")"
   },
   {
     "objectID": "index.html#estilos",
@@ -222,6 +110,13 @@
     "title": "Estadística aplicada con R",
     "section": "Gráficos como objetos",
     "text": "Gráficos como objetos\n\nCódigoGráfico\n\n\n\ngrafico1 <- ggplot(penguins,\n       aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +\n  geom_point(alpha = 0.7,\n             size = 3) +\n  geom_smooth(method = \"lm\") + \n  scale_x_continuous(breaks = seq(30, 60, 5)) +\n  scale_y_continuous(breaks = seq(10, 24, 2)) +\n  scale_color_viridis(discrete = T) +\n  facet_wrap(~island) +\n  labs(title = \"Largo de pico vs. Profundidad de pico\",\n       subtitle = \"Pingüinos de Palmer\",\n       caption = \"Gráfica propia\",\n       x = \"Largo del pico\",\n       y = \"Profundidad del pico\",\n       color = \"Especie\") +\n  theme_bw()\n\ngrafico2 <- grafico1 + theme_classic()\ngrafico2"
+  },
+  {
+    "objectID": "index.html#ejercicio-3.1",
+    "href": "index.html#ejercicio-3.1",
+    "title": "Estadística aplicada con R",
+    "section": "Ejercicio 3.1",
+    "text": "Ejercicio 3.1\nCon la ayuda del anterior código, realiza un gráfico de dispersión entre las variables flipper_length_mm y body_mass_g en facetas determinadas por la variable sex. Para explorar más opciones de las paletas de color y los estilos, puedes usar las siguientes expresiones:\n\nviridis:\n\nscale_color_viridis(discrete = T, option = \"A\") donde el argumento option te permite escoger varias paletas (A: magma, B: inferno, C: plasma, D: viridis, E: cividis, F: rocket, G: mako y H: turbo)\n\nggsci:\n\nPuedes variar la terminación del comando scale_color_ con cualquiera de las siguientes opciones: npg, aaas, nejm, simpsons, rickandmorty.\n\nEstilos:\n\nReemplaza la línea theme_bw() por cualquiera de las siguientes opciones theme_gray(), theme_dark(), theme_minimal(), theme_classic()\n\n\n¿Notas algo raro en las facetas?\n\nPara mayor información, puedes revisar la documentación de viridis en este enlace, de ggsci en este enlace y la de los estilos de ggplot2 en este otro enlace."
   },
   {
     "objectID": "index.html#datos-perdidos",
@@ -301,6 +196,13 @@
     "text": "Gráficos de caja y bigote en ggplot2\n\nCódigoGráfico\n\n\n\nsub_penguins <- na.omit(penguins)\nggplot(sub_penguins,\n       aes(y = bill_depth_mm, x = species, fill = species)) +\n  geom_boxplot(outlier.fill = \"red\",\n               outlier.shape = 23) +\n  facet_grid(~sex~island) + \n  theme(legend.position = \"none\")"
   },
   {
+    "objectID": "index.html#ejercicio-3.2",
+    "href": "index.html#ejercicio-3.2",
+    "title": "Estadística aplicada con R",
+    "section": "Ejercicio 3.2",
+    "text": "Ejercicio 3.2\nUsando como base el código del ejemplo anterior, realiza un gráfico de facetas con la variable body_mass_g. Mira si existen o no outliers. ¿Crees conveniente removerlos?"
+  },
+  {
     "objectID": "index.html#y-ahora-qué-hago-con-los-outliers",
     "href": "index.html#y-ahora-qué-hago-con-los-outliers",
     "title": "Estadística aplicada con R",
@@ -313,13 +215,6 @@
     "title": "Estadística aplicada con R",
     "section": "Y ahora, ¿qué hago con los outliers?",
     "text": "Y ahora, ¿qué hago con los outliers?\n\n\nEl remover outliers no se aconseja antes de llevar a cabo análisis de inferencia estadística.\nPara remover outliers antes de analizar propiamente los datos, se necesita tener certeza de las razones por las cuales estos fueron registrados:\n\nFallas comprobadas en el equipo de medición\nErrores al escribir las mediciones en el medio de registro (libro de laboratorio, base de datos)\nFalencias en las técnicas, metodologías o materiales que ayudaron en la toma de las observaciones (reactivos expirados, protocolos mal interpretados o descontinuados)\nSi las anteriores no se cumplen, tener respaldo bibliográfico o experiencia de que el valor del outlier es improbable en la población sujeto de estudio.\n\nMuchas veces, los aparentes outliers no tienen mayor efecto en las inferencias que se realicen. Y en los casos extremos de considerar su remoción, se puede recurrir a transformaciones de los datos. En otras palabras, el último recurso es removerlos.\nCuando llegado el caso, no existe otra opción, debería ser una obligación el reportar las razones para no considerarlos en el análisis (integridad científica)."
-  },
-  {
-    "objectID": "index.html#ejercicio-3.2",
-    "href": "index.html#ejercicio-3.2",
-    "title": "Estadística aplicada con R",
-    "section": "Ejercicio 3.2",
-    "text": "Ejercicio 3.2\nUsando como base el código del ejemplo anterior, realiza un gráfico de facetas con la variable body_mass_g. Mira si existen o no outliers. ¿Crees conveniente removerlos?"
   },
   {
     "objectID": "index.html#cómo-remuevo-outliers",
@@ -371,13 +266,6 @@
     "text": "Matrices de dispersión en ggplot2\n\nCódigoGráfico\n\n\n\nlibrary(GGally)\nggpairs(matriz_penguins)"
   },
   {
-    "objectID": "index.html#histogramas",
-    "href": "index.html#histogramas",
-    "title": "Estadística aplicada con R",
-    "section": "Histogramas",
-    "text": "Histogramas\n\n\nUn histograma es un gráfico estadístico que divide una variable continua en un determinado número de rangos y luego cuenta el número de veces que los datos caen en cada uno de ellos para producir una barra por rango.\nSirve como un diagnóstico de la distribución de una muestra.\nDesde la perspectiva del AED, nos da una idea visual de si las variables se alejan de la normalidad.\n\nEsto último podría dar indicaciones de si es necesaria una transformación.\n¡Pero!… no es recomendable empezar transformando variables directamente hasta no conducir un análisis formal."
-  },
-  {
     "objectID": "index.html#ejercicio-3.4",
     "href": "index.html#ejercicio-3.4",
     "title": "Estadística aplicada con R",
@@ -385,18 +273,11 @@
     "text": "Ejercicio 3.4\nRealiza una matriz de dispersión usando los datos en el archivo excel “rotXLS.xlsx” que usamos en la primera sesión. Los datos contenidos en este archivo corresponden al conteo de casos de rotavirus en Berlín desde el 2001 hasta el 2020. Las variables contenidas en este archivo son:\n\n\n\ndate: fecha de cierre de la toma de datos\ncases: número de casos de rotavirus en la semana\nweek: semana epidemiológica\nincidence: número de casos/100000 habitantes\nFM: media diaria de velocidad del viento (m/s)\nRSK: media diaria de lluvia (mm)\n\n\n\nSHK_TAG: media diaria de nieve (cm)\nPM: media diaria de presión atmosférica (hPa)\nTMK: media diaria de temperatura (°C)\nTXK: media diaria de temperatura máxima (°C)\nTNK: media diaria de temperatura mínima (°C)\nUPM: media diaria de humedad relativa (%)\n\n\n\nDeja fuera de la matriz las variables date, incidence y week. ¿Cuáles variables crees que serían mejores para una inferencia estadística acerca de la relación clima-casos de rotavirus?\n\nlibrary(readxl)                           \nrot_berlin <- read_excel(\"rotXLS.xlsx\")"
   },
   {
-    "objectID": "index.html#histogramas-1",
-    "href": "index.html#histogramas-1",
+    "objectID": "index.html#histogramas",
+    "href": "index.html#histogramas",
     "title": "Estadística aplicada con R",
     "section": "Histogramas",
-    "text": "Histogramas"
-  },
-  {
-    "objectID": "index.html#histogramas-en-r-base",
-    "href": "index.html#histogramas-en-r-base",
-    "title": "Estadística aplicada con R",
-    "section": "Histogramas en R base",
-    "text": "Histogramas en R base\n\n\n\nhist(penguins$bill_length_mm)\n\n\n\n\n\n\n\n\n\n\nhist(penguins$bill_length_mm, breaks = 50)\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = bill_length_mm)) +\n  geom_histogram(bins = 50)\n\n\n\n\n\n\n\n\n\n\nhist(penguins$bill_length_mm, breaks = 50)"
+    "text": "Histogramas\n\n\nUn histograma es un gráfico estadístico que divide una variable continua en un determinado número de rangos y luego cuenta el número de veces que los datos caen en cada uno de ellos para producir una barra por rango.\nSirve como un diagnóstico de la distribución de una muestra.\nDesde la perspectiva del AED, nos da una idea visual de si las variables se alejan de la normalidad.\n\nEsto último podría dar indicaciones de si es necesaria una transformación.\n¡Pero!… no es recomendable empezar transformando variables directamente hasta no conducir un análisis formal."
   },
   {
     "objectID": "index.html#histogramas-en-r-base-y-ggplot2",
@@ -455,11 +336,11 @@
     "text": "Gráficos de líneas con estadísticos descriptivos\n\nCódigoGráfico\n\n\n\nlibrary(lubridate)\nlibrary(dplyr)\n\nrot_berlin$mes <- month(rot_berlin$date)\nrot_berlin$year <- year(rot_berlin$date)\ntemp_berlin <- rot_berlin %>%\n  group_by(mes) %>%\n  summarise(n = n(),\n            media = mean(TMK),\n            desv = sd(TMK),\n            s.err = desv/sqrt(n)) \n\ngrafico3 <- ggplot(temp_berlin,\n       aes(x = factor(mes),\n           y = media,\n           group = 1)) +\n  geom_point() +\n  geom_line() +\n  geom_errorbar(aes(ymin = media - s.err,\n                    ymax = media + s.err),\n                width = .3)\ngrafico3"
   },
   {
-    "objectID": "index.html#combinando-y-exportando-gráficos-en-ggplot2",
-    "href": "index.html#combinando-y-exportando-gráficos-en-ggplot2",
+    "objectID": "index.html#combinando-y-exportando-gráficos-de-ggplot2",
+    "href": "index.html#combinando-y-exportando-gráficos-de-ggplot2",
     "title": "Estadística aplicada con R",
-    "section": "Combinando y exportando gráficos en ggplot2",
-    "text": "Combinando y exportando gráficos en ggplot2\n\n\nUn reto que hemos todos encontrado alguna vez es el de combinar varios gráficos en uno solo.\nEsto requiere paciencia y el uso de software externo (llámese CorelDraw, Adobe Illustrator, PowerPoint o incluso Paint).\nLa librería complementaria patchwork nos permite combinar gráficos de ggplot2 de una manera sencilla y rápida.\nAdemás, gracias a la función ggsave de ggplot2 podemos exportar fácilmente nuestros gráficos sin requerir (ojalá) a la ayuda de software externo para dar retoques finales a estos gráficos."
+    "section": "Combinando y exportando gráficos de ggplot2",
+    "text": "Combinando y exportando gráficos de ggplot2\n\n\nUn reto que hemos todos encontrado alguna vez es el de combinar varios gráficos en uno solo.\nEsto requiere paciencia y el uso de software externo (llámese CorelDraw, Adobe Illustrator, PowerPoint o incluso Paint).\nLa librería complementaria patchwork nos permite combinar gráficos de ggplot2 de una manera sencilla y rápida.\nAdemás, gracias a la función ggsave de ggplot2 podemos exportar fácilmente nuestros gráficos sin requerir (ojalá) a la ayuda de software externo para dar retoques finales a estos gráficos."
   },
   {
     "objectID": "index.html#combinando-gráficos-con-patchwork",
@@ -467,13 +348,6 @@
     "title": "Estadística aplicada con R",
     "section": "Combinando gráficos con patchwork",
     "text": "Combinando gráficos con patchwork\n\nCódigoGráfico\n\n\n\nlibrary(patchwork)\ngraficofinal <- (grafico1 | grafico2) / grafico3\ngraficofinal + plot_annotation(tag_levels = 'A')\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPara más información de las funciones y utilidades de patchwork puedes visitar la página oficial con su documentación y ejemplos."
-  },
-  {
-    "objectID": "index.html#combinando-y-exportando-gráficos-de-ggplot2",
-    "href": "index.html#combinando-y-exportando-gráficos-de-ggplot2",
-    "title": "Estadística aplicada con R",
-    "section": "Combinando y exportando gráficos de ggplot2",
-    "text": "Combinando y exportando gráficos de ggplot2\n\n\nUn reto que hemos todos encontrado alguna vez es el de combinar varios gráficos en uno solo.\nEsto requiere paciencia y el uso de software externo (llámese CorelDraw, Adobe Illustrator, PowerPoint o incluso Paint).\nLa librería complementaria patchwork nos permite combinar gráficos de ggplot2 de una manera sencilla y rápida.\nAdemás, gracias a la función ggsave de ggplot2 podemos exportar fácilmente nuestros gráficos sin requerir (ojalá) a la ayuda de software externo para dar retoques finales a estos gráficos."
   },
   {
     "objectID": "index.html#exportando-gráficos-de-ggplot",
