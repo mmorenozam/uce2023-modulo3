@@ -7,8 +7,6 @@ title-slide-attributes:
   data-background-opacity: "0.2"
 author: 
   - name: Mauricio Moreno, PhD
-    affiliations:
-      - Científico Bioestadístico en Bayer AG
 logo: images/logo.jpeg
 format: 
   revealjs:
