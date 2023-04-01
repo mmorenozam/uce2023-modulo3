@@ -1405,6 +1405,27 @@ I=\left[C_{0.25}-1.5 \times RIC ,\,C_{0.75}+1.5 \times RIC \right]
 
 </div>
 <img data-src="index_files/figure-revealjs/unnamed-chunk-53-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="gráficos-rápidos-de-ggplot2-qplot" class="slide level2">
+<h2>Gráficos rápidos de <code>ggplot2</code>: <code>qplot</code></h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">qplot</span>(body_mass_g, flipper_length_mm,<span class="at">data =</span> penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-54-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="gráficos-rápidos-de-ggplot2-qplot-1" class="slide level2" data-visibility="uncounted">
+<h2>Gráficos rápidos de <code>ggplot2</code>: <code>qplot</code></h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">qplot</span>(bill_depth_mm, <span class="at">fill =</span> island, <span class="at">data =</span> penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-55-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="gráficos-rápidos-de-ggplot2-qplot-2" class="slide level2" data-visibility="uncounted">
+<h2>Gráficos rápidos de <code>ggplot2</code>: <code>qplot</code></h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">qplot</span>(species, bill_depth_mm, <span class="at">fill =</span> species, <span class="at">data =</span> penguins, <span class="at">geom =</span> <span class="fu">c</span>(<span class="st">"boxplot"</span>, <span class="st">"jitter"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-56-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="gráficos-de-líneas-con-estadísticos-descriptivos" class="slide level2">
 <h2>Gráficos de líneas con estadísticos descriptivos</h2>
 <div class="panel-tabset">
@@ -1412,28 +1433,28 @@ I=\left[C_{0.25}-1.5 \times RIC ,\,C_{0.75}+1.5 \times RIC \right]
 <div class="tab-content">
 <div id="tabset-18-1">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb37-2"><a href="#cb37-2"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb37-3"><a href="#cb37-3"></a></span>
-<span id="cb37-4"><a href="#cb37-4"></a>rot_berlin<span class="sc">$</span>mes <span class="ot">&lt;-</span> <span class="fu">month</span>(rot_berlin<span class="sc">$</span>date)</span>
-<span id="cb37-5"><a href="#cb37-5"></a>rot_berlin<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">year</span>(rot_berlin<span class="sc">$</span>date)</span>
-<span id="cb37-6"><a href="#cb37-6"></a>temp_berlin <span class="ot">&lt;-</span> rot_berlin <span class="sc">%&gt;%</span></span>
-<span id="cb37-7"><a href="#cb37-7"></a>  <span class="fu">group_by</span>(mes) <span class="sc">%&gt;%</span></span>
-<span id="cb37-8"><a href="#cb37-8"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(),</span>
-<span id="cb37-9"><a href="#cb37-9"></a>            <span class="at">media =</span> <span class="fu">mean</span>(TMK),</span>
-<span id="cb37-10"><a href="#cb37-10"></a>            <span class="at">desv =</span> <span class="fu">sd</span>(TMK),</span>
-<span id="cb37-11"><a href="#cb37-11"></a>            <span class="at">s.err =</span> desv<span class="sc">/</span><span class="fu">sqrt</span>(n)) </span>
-<span id="cb37-12"><a href="#cb37-12"></a></span>
-<span id="cb37-13"><a href="#cb37-13"></a>grafico3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(temp_berlin,</span>
-<span id="cb37-14"><a href="#cb37-14"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(mes),</span>
-<span id="cb37-15"><a href="#cb37-15"></a>           <span class="at">y =</span> media,</span>
-<span id="cb37-16"><a href="#cb37-16"></a>           <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb37-17"><a href="#cb37-17"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb37-18"><a href="#cb37-18"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb37-19"><a href="#cb37-19"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> media <span class="sc">-</span> s.err,</span>
-<span id="cb37-20"><a href="#cb37-20"></a>                    <span class="at">ymax =</span> media <span class="sc">+</span> s.err),</span>
-<span id="cb37-21"><a href="#cb37-21"></a>                <span class="at">width =</span> .<span class="dv">3</span>)</span>
-<span id="cb37-22"><a href="#cb37-22"></a>grafico3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb40-2"><a href="#cb40-2"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb40-3"><a href="#cb40-3"></a></span>
+<span id="cb40-4"><a href="#cb40-4"></a>rot_berlin<span class="sc">$</span>mes <span class="ot">&lt;-</span> <span class="fu">month</span>(rot_berlin<span class="sc">$</span>date)</span>
+<span id="cb40-5"><a href="#cb40-5"></a>rot_berlin<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">year</span>(rot_berlin<span class="sc">$</span>date)</span>
+<span id="cb40-6"><a href="#cb40-6"></a>temp_berlin <span class="ot">&lt;-</span> rot_berlin <span class="sc">%&gt;%</span></span>
+<span id="cb40-7"><a href="#cb40-7"></a>  <span class="fu">group_by</span>(mes) <span class="sc">%&gt;%</span></span>
+<span id="cb40-8"><a href="#cb40-8"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb40-9"><a href="#cb40-9"></a>            <span class="at">media =</span> <span class="fu">mean</span>(TMK),</span>
+<span id="cb40-10"><a href="#cb40-10"></a>            <span class="at">desv =</span> <span class="fu">sd</span>(TMK),</span>
+<span id="cb40-11"><a href="#cb40-11"></a>            <span class="at">s.err =</span> desv<span class="sc">/</span><span class="fu">sqrt</span>(n)) </span>
+<span id="cb40-12"><a href="#cb40-12"></a></span>
+<span id="cb40-13"><a href="#cb40-13"></a>grafico3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(temp_berlin,</span>
+<span id="cb40-14"><a href="#cb40-14"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(mes),</span>
+<span id="cb40-15"><a href="#cb40-15"></a>           <span class="at">y =</span> media,</span>
+<span id="cb40-16"><a href="#cb40-16"></a>           <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb40-17"><a href="#cb40-17"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb40-18"><a href="#cb40-18"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb40-19"><a href="#cb40-19"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> media <span class="sc">-</span> s.err,</span>
+<span id="cb40-20"><a href="#cb40-20"></a>                    <span class="at">ymax =</span> media <span class="sc">+</span> s.err),</span>
+<span id="cb40-21"><a href="#cb40-21"></a>                <span class="at">width =</span> .<span class="dv">3</span>)</span>
+<span id="cb40-22"><a href="#cb40-22"></a>grafico3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-18-2">
@@ -1441,7 +1462,7 @@ I=\left[C_{0.25}-1.5 \times RIC ,\,C_{0.75}+1.5 \times RIC \right]
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-55-1.png" width="960"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-58-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1468,9 +1489,9 @@ I=\left[C_{0.25}-1.5 \times RIC ,\,C_{0.75}+1.5 \times RIC \right]
 <div class="tab-content">
 <div id="tabset-19-1">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb38-2"><a href="#cb38-2"></a>graficofinal <span class="ot">&lt;-</span> (grafico1 <span class="sc">|</span> grafico2) <span class="sc">/</span> grafico3</span>
-<span id="cb38-3"><a href="#cb38-3"></a>graficofinal <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">'A'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb41-2"><a href="#cb41-2"></a>graficofinal <span class="ot">&lt;-</span> (grafico1 <span class="sc">|</span> grafico2) <span class="sc">/</span> grafico3</span>
+<span id="cb41-3"><a href="#cb41-3"></a>graficofinal <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">'A'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-19-2">
@@ -1478,7 +1499,7 @@ I=\left[C_{0.25}-1.5 \times RIC ,\,C_{0.75}+1.5 \times RIC \right]
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-57-1.png" width="960"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-60-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1493,8 +1514,8 @@ I=\left[C_{0.25}-1.5 \times RIC ,\,C_{0.75}+1.5 \times RIC \right]
 <section id="exportando-gráficos-de-ggplot" class="slide level2 scrollable">
 <h2>Exportando gráficos de <code>ggplot</code></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>graficofinal_estavezsi <span class="ot">&lt;-</span> graficofinal <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">'A'</span>)</span>
-<span id="cb39-2"><a href="#cb39-2"></a><span class="fu">ggsave</span>(<span class="st">"grafico.png"</span>, <span class="at">plot =</span> graficofinal_estavezsi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>graficofinal_estavezsi <span class="ot">&lt;-</span> graficofinal <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">'A'</span>)</span>
+<span id="cb42-2"><a href="#cb42-2"></a><span class="fu">ggsave</span>(<span class="st">"grafico.png"</span>, <span class="at">plot =</span> graficofinal_estavezsi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 <img data-src="images/out.png" class="r-stretch quarto-figure-center"></section></section>

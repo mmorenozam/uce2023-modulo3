@@ -1085,6 +1085,24 @@ ggplot(rot_berlin,
   geom_line() 
 ```
 
+## Gráficos rápidos de `ggplot2`: `qplot`
+
+```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4}
+qplot(body_mass_g, flipper_length_mm,data = penguins)
+```
+
+## Gráficos rápidos de `ggplot2`: `qplot` {visibility="uncounted"}
+
+```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4}
+qplot(bill_depth_mm, fill = island, data = penguins)
+```
+
+## Gráficos rápidos de `ggplot2`: `qplot` {visibility="uncounted"}
+
+```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4}
+qplot(species, bill_depth_mm, fill = species, data = penguins, geom = c("boxplot", "jitter"))
+```
+
 ## Gráficos de líneas con estadísticos descriptivos
 
 

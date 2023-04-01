@@ -355,5 +355,26 @@
     "title": "Estadística aplicada con R",
     "section": "Exportando gráficos de ggplot",
     "text": "Exportando gráficos de ggplot\n\ngraficofinal_estavezsi &lt;- graficofinal + plot_annotation(tag_levels = 'A')\nggsave(\"grafico.png\", plot = graficofinal_estavezsi)"
+  },
+  {
+    "objectID": "index.html#gráficos-rápidos-de-ggplot2-qplot",
+    "href": "index.html#gráficos-rápidos-de-ggplot2-qplot",
+    "title": "Estadística aplicada con R",
+    "section": "Gráficos rápidos de ggplot2: qplot",
+    "text": "Gráficos rápidos de ggplot2: qplot\n\nqplot(body_mass_g, flipper_length_mm,data = penguins)"
+  },
+  {
+    "objectID": "index.html#gráficos-rápidos-de-ggplot2-qplot-1",
+    "href": "index.html#gráficos-rápidos-de-ggplot2-qplot-1",
+    "title": "Estadística aplicada con R",
+    "section": "Gráficos rápidos de ggplot2: qplot",
+    "text": "Gráficos rápidos de ggplot2: qplot\n\nqplot(bill_depth_mm, fill = island, data = penguins)"
+  },
+  {
+    "objectID": "index.html#gráficos-rápidos-de-ggplot2-qplot-2",
+    "href": "index.html#gráficos-rápidos-de-ggplot2-qplot-2",
+    "title": "Estadística aplicada con R",
+    "section": "Gráficos rápidos de ggplot2: qplot",
+    "text": "Gráficos rápidos de ggplot2: qplot\n\nqplot(species, bill_depth_mm, fill = species, data = penguins, geom = c(\"boxplot\", \"jitter\"))"
   }
 ]
