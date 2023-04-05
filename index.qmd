@@ -853,6 +853,53 @@ Remueve el outlier en el boxplot que se visualiza en la siguiente línea de cód
 plot(bill_depth_mm ~ species, data = penguins)
 ```
 
+
+## Ejercicio 3.4 {.smaller .scrollable}
+
+Los datos del archivo de excel "rotXLS.xlsx" que mencionamos brevemente en el primer módulo contiene información sobre el conteo de casos de rotavirus en Berlín desde el año 2001 hasta el 2020. Las variables de esta tabla de datos son:
+
+::: columns
+::: {.column width="50%"}
+-   `date`: fecha de cierre de la toma de datos
+
+-   `cases`: número de casos de rotavirus en la semana
+
+-   `week`: semana epidemiológica
+
+-   `incidence`: número de casos/100000 habitantes
+
+-   `FM`: media diaria de velocidad del viento (m/s)
+
+-   `RSK`: media diaria de lluvia (mm)
+:::
+
+::: {.column width="50%"}
+-   `SHK_TAG`: media diaria de nieve (cm)
+
+-   `PM`: media diaria de presión atmosférica (hPa)
+
+-   `TMK`: media diaria de temperatura (°C)
+
+-   `TXK`: media diaria de temperatura máxima (°C)
+
+-   `TNK`: media diaria de temperatura mínima (°C)
+
+-   `UPM`: media diaria de humedad relativa (%)
+:::
+:::
+
+1.    Crea un boxplot del número de casos con respecto a las semanas epidemiológicas con `ggplot2` y gráficos base de R 
+
+2.    Remueve los outliers
+
+(Tip: convierte las semanas a factor: `rot_berlin$cases <- as.factor(rot_berlin$cases)`
+
+```{r echo=T, eval=F, error=T, fig.align = 'center'}
+setwd("ponaqui/elpath/detudirectoriode/trabajo")
+library(readxl)                           
+rot_berlin <- read_excel("rotXLS.xlsx")
+```
+
 ## Relaciones lineales {.smaller}
 
 ::: incremental
@@ -924,41 +971,9 @@ ggpairs(matriz_penguins)
 
 :::
 
-## Ejercicio 3.4 {.smaller}
+## Ejercicio 3.5 {.smaller}
 
-Realiza una matriz de dispersión usando los datos en el archivo excel "rotXLS.xlsx" que usamos en la primera sesión. Los datos contenidos en este archivo corresponden al conteo de casos de rotavirus en Berlín desde el 2001 hasta el 2020. Las variables contenidas en este archivo son:
-
-::: columns
-::: {.column width="50%"}
--   `date`: fecha de cierre de la toma de datos
-
--   `cases`: número de casos de rotavirus en la semana
-
--   `week`: semana epidemiológica
-
--   `incidence`: número de casos/100000 habitantes
-
--   `FM`: media diaria de velocidad del viento (m/s)
-
--   `RSK`: media diaria de lluvia (mm)
-:::
-
-::: {.column width="50%"}
--   `SHK_TAG`: media diaria de nieve (cm)
-
--   `PM`: media diaria de presión atmosférica (hPa)
-
--   `TMK`: media diaria de temperatura (°C)
-
--   `TXK`: media diaria de temperatura máxima (°C)
-
--   `TNK`: media diaria de temperatura mínima (°C)
-
--   `UPM`: media diaria de humedad relativa (%)
-:::
-:::
-
-Deja fuera de la matriz las variables `date`, `incidence` y `week`. ¿Cuáles variables crees que serían mejores para una inferencia estadística acerca de la relación clima-casos de rotavirus?
+Realiza una matriz de dispersión usando los datos de casos de rotavirus en Berlín. Deja fuera de la matriz las variables `date`, `incidence` y `week`. ¿Cuáles variables crees que serían mejores para una inferencia estadística acerca de la relación clima-casos de rotavirus?
 
 ```{r echo=T, eval=F, error=T, fig.align = 'center'}
 library(readxl)                           
@@ -1014,102 +1029,112 @@ ggplot(penguins, aes(x = bill_length_mm)) +
 :::
 :::
 
-## Ejercicio 3.5
+## Ejercicio 3.6
 
-Realiza histogramas para las variables `cases` y `TMK` de la tabla de datos de casos de rotavirus en Berlín.
+Realiza histogramas para todas las variables de la tabla de datos del rotavirus con la excepción de `date` y `week`.
 
-## Más exploración
+# Otras geometrías útiles
 
-::: incremental
+## Gráficos de densidad
 
--   Lo que hemos revisado hasta el momento, son las técnicas más frecuentemente usadas para AED.
+::: panel-tabset
 
--   Sin embargo, existen librerías de R que permiten también hacer AED de una manera automática y más accesible.
+### Código
 
--   Como ejemplos, haremos un enfoque en dos librerías que hacen uso de Shiny para brindar esta experiencia al usuario. Estas son `explore` y `dataxray`
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+ggplot(sub_penguins,
+       aes(x = bill_depth_mm, group=species, fill = species)) +
+  geom_density(alpha = 0.4)
+```
+
+### Gráfico
+
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+ggplot(sub_penguins,
+       aes(x = bill_depth_mm, group=species, fill = species)) +
+  geom_density(alpha = 0.4)
+```
 
 :::
 
-. . .
-
-```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
-library(explore)
-explore(penguins)
-
-install.packages("devtools")
-install.packages("flexdashboard")
-devtools::install_github("agstn/dataxray")
-library(dataxray)
-report_xray(data = penguins, data_name = 'penguins', study = "ggplot2")
-```
-
-# ¡Antes de terminar por hoy!
-
 ## Gráficos de barras
 
-```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4}
+::: panel-tabset
+
+### Código
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
 ggplot(penguins,
        aes(x = species)) +
   geom_bar()
 ```
 
-## Gráficos de barras con porcentajes
+### Gráfico
 
-```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4}
-ggplot(penguins,
-       aes(x = species,
-           y = ..count../sum(..count..))) +
-  geom_bar() +
-  scale_y_continuous(labels = scales::percent)
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+ggplot(sub_penguins,
+       aes(x = species)) +
+  geom_bar()
 ```
+
+:::
 
 ## Gráficos de barras apiladas
 
-```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4}
+::: panel-tabset
+
+### Código
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
 ggplot(penguins,
        aes(x = island,
            fill = species)) +
   geom_bar(position = "stack") 
 ```
 
+### Gráfico
+
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+ggplot(penguins,
+       aes(x = island,
+           fill = species)) +
+  geom_bar(position = "stack") 
+```
+
+:::
+
+
 ## Gráficos de líneas
+
 ```{r echo=F, eval=T, error=T, fig.align = 'center'}
 library(readxl)                           
 rot_berlin <- read_excel("rotXLS.xlsx")
 ```
 
-```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4}
+::: panel-tabset
+
+### Código
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
 ggplot(rot_berlin,
        aes(x = date,
            y = cases)) +
   geom_line() 
 ```
 
-## Gráficos rápidos de `ggplot2`: `qplot`
+### Gráfico
 
-
-
-```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4}
-qplot(bill_depth_mm, fill = island, data = penguins)
+```{r echo=F, eval=T, error=T, fig.align = 'center'}
+ggplot(rot_berlin,
+       aes(x = date,
+           y = cases)) +
+  geom_line() 
 ```
 
-## Gráficos rápidos de `ggplot2`: `qplot` {visibility="uncounted"}
-
-```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4}
-qplot(body_mass_g, flipper_length_mm,data = penguins)
-```
-
-
-
-## Gráficos rápidos de `ggplot2`: `qplot` {visibility="uncounted"}
-
-```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4}
-qplot(species, bill_depth_mm, fill = species, data = penguins, geom = c("boxplot", "jitter"))
-```
+:::
 
 
 ## Gráficos de líneas con estadísticos descriptivos
-
 
 ::: panel-tabset
 
@@ -1217,6 +1242,57 @@ ggsave("grafico.png", plot = graficofinal_estavezsi)
 ```
 
 ![](images/out.png){fig-align="center"}
+
+## Ejercicio 3.7
+
+Exporta un objeto de `ggplot2` con gráficos de tu elección (6 en total) combinados con la ayuda de `patchwork` en el layout que desees a formatos .png y .pdf.
+
+
+## Más exploración
+
+::: incremental
+
+-   Lo que hemos revisado hasta el momento, son las técnicas más frecuentemente usadas para AED.
+
+-   Sin embargo, existen librerías de R que permiten también hacer AED de una manera automática y más accesible.
+
+-   Como ejemplos, haremos un enfoque en dos librerías que hacen uso de Shiny para brindar esta experiencia al usuario. Estas son `explore` y `dataxray`
+
+:::
+
+. . .
+
+```{r echo=T, eval=F, error=T, fig.align = 'center', fig.height=4}
+library(explore)
+explore(penguins)
+
+install.packages("devtools")
+install.packages("flexdashboard")
+devtools::install_github("agstn/dataxray")
+library(dataxray)
+report_xray(data = penguins, data_name = 'penguins', study = "ggplot2")
+```
+
+# ¡Antes de terminar por hoy!
+
+
+## Gráficos rápidos de `ggplot2`: `qplot`
+
+```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4}
+qplot(bill_depth_mm, fill = island, data = penguins)
+```
+
+## Gráficos rápidos de `ggplot2`: `qplot` {visibility="uncounted"}
+
+```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4}
+qplot(body_mass_g, flipper_length_mm,data = penguins)
+```
+
+## Gráficos rápidos de `ggplot2`: `qplot` {visibility="uncounted"}
+
+```{r echo=T, eval=T, error=T, fig.align = 'center', fig.height=4}
+qplot(species, bill_depth_mm, fill = species, data = penguins, geom = c("boxplot", "jitter"))
+```
 
 
 # ¡Gracias!

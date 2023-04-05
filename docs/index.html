@@ -1168,76 +1168,9 @@ I=\left[C_{0.25}-1.5 \times RIC ,\,C_{0.75}+1.5 \times RIC \right]
 
 </div>
 <img data-src="index_files/figure-revealjs/unnamed-chunk-38-1.png" width="480" class="r-stretch quarto-figure-center"></section>
-<section id="relaciones-lineales" class="slide level2 smaller">
-<h2>Relaciones lineales</h2>
-<div>
-<ul>
-<li class="fragment"><p>El dar un vistazo a relaciones lineales entre variables continuas también nos puede dar una idea de la presencia de outliers.</p></li>
-<li class="fragment"><p>Adicionalmente, nos permite visualizar arreglos/patrones en los datos que responden a la influencia de variables de agrupación (en el ejemplo de los pingüinos ya vimos que las especies y las islas determinan algún tipo de arreglo).</p></li>
-<li class="fragment"><p>También nos dan una idea de las correlaciones entre las variables. Esto es de mayor importancia en los casos que tenemos en mente llevar a cabo análisis multivariables.</p></li>
-<li class="fragment"><p>Por ejemplo, en análisis de covarianza (cuando una o más variables explanatorias son continuas), no tiene sentido el incluir variables altamente correlacionadas entre sí.</p></li>
-<li class="fragment"><p>Para esto, la forma más sencilla es llevar a cabo gráficos de dispersión para tantos pares posibles de combinaciones de variables continuas tengamos.</p></li>
-<li class="fragment"><p>Esto obviamente sería tedioso y propenso a errores si lo llevamos a cabo de manera manual.</p></li>
-<li class="fragment"><p>Afortunadamente R nos ofrece varias formas de llevar a cabo matrices de gráficos de dispersión</p></li>
-</ul>
-</div>
-</section>
-<section id="matrices-de-dispersión-en-r-base" class="slide level2" data-visibility="uncounted">
-<h2>Matrices de dispersión en R base</h2>
-<div class="panel-tabset">
-<ul id="tabset-16" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-16-1">Código</a></li><li><a href="#tabset-16-2">Gráfico</a></li></ul>
-<div class="tab-content">
-<div id="tabset-16-1">
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25" data-code-line-numbers="1-4|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>matriz_penguins <span class="ot">&lt;-</span> penguins[,<span class="fu">c</span>(<span class="st">"bill_length_mm"</span>,</span>
-<span id="cb25-2"><a href="#cb25-2"></a>                               <span class="st">"bill_depth_mm"</span>,</span>
-<span id="cb25-3"><a href="#cb25-3"></a>                               <span class="st">"flipper_length_mm"</span>,</span>
-<span id="cb25-4"><a href="#cb25-4"></a>                               <span class="st">"body_mass_g"</span>)]</span>
-<span id="cb25-5"><a href="#cb25-5"></a><span class="fu">pairs</span>(matriz_penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<div id="tabset-16-2">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-40-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="matrices-de-dispersión-en-ggplot2" class="slide level2" data-visibility="uncounted">
-<h2>Matrices de dispersión en <code>ggplot2</code></h2>
-<div class="panel-tabset">
-<ul id="tabset-17" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-17-1">Código</a></li><li><a href="#tabset-17-2">Gráfico</a></li></ul>
-<div class="tab-content">
-<div id="tabset-17-1">
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb26" data-code-line-numbers="1|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">library</span>(GGally)</span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="fu">ggpairs</span>(matriz_penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<div id="tabset-17-2">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-42-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="ejercicio-3.4" class="slide level2 smaller">
+<section id="ejercicio-3.4" class="slide level2 smaller scrollable">
 <h2>Ejercicio 3.4</h2>
-<p>Realiza una matriz de dispersión usando los datos en el archivo excel “rotXLS.xlsx” que usamos en la primera sesión. Los datos contenidos en este archivo corresponden al conteo de casos de rotavirus en Berlín desde el 2001 hasta el 2020. Las variables contenidas en este archivo son:</p>
+<p>Los datos del archivo de excel “rotXLS.xlsx” que mencionamos brevemente en el primer módulo contiene información sobre el conteo de casos de rotavirus en Berlín desde el año 2001 hasta el 2020. Las variables de esta tabla de datos son:</p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
@@ -1259,10 +1192,90 @@ I=\left[C_{0.25}-1.5 \times RIC ,\,C_{0.75}+1.5 \times RIC \right]
 </ul>
 </div>
 </div>
-<p>Deja fuera de la matriz las variables <code>date</code>, <code>incidence</code> y <code>week</code>. ¿Cuáles variables crees que serían mejores para una inferencia estadística acerca de la relación clima-casos de rotavirus?</p>
+<ol type="1">
+<li><p>Crea un boxplot del número de casos con respecto a las semanas epidemiológicas con <code>ggplot2</code> y gráficos base de R</p></li>
+<li><p>Remueve los outliers</p></li>
+</ol>
+<p>(Tip: convierte las semanas a factor: <code>rot_berlin$cases &lt;- as.factor(rot_berlin$cases)</code></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">library</span>(readxl)                           </span>
-<span id="cb27-2"><a href="#cb27-2"></a>rot_berlin <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"rotXLS.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">setwd</span>(<span class="st">"ponaqui/elpath/detudirectoriode/trabajo"</span>)</span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="fu">library</span>(readxl)                           </span>
+<span id="cb25-3"><a href="#cb25-3"></a>rot_berlin <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"rotXLS.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="relaciones-lineales" class="slide level2 smaller">
+<h2>Relaciones lineales</h2>
+<div>
+<ul>
+<li class="fragment"><p>El dar un vistazo a relaciones lineales entre variables continuas también nos puede dar una idea de la presencia de outliers.</p></li>
+<li class="fragment"><p>Adicionalmente, nos permite visualizar arreglos/patrones en los datos que responden a la influencia de variables de agrupación (en el ejemplo de los pingüinos ya vimos que las especies y las islas determinan algún tipo de arreglo).</p></li>
+<li class="fragment"><p>También nos dan una idea de las correlaciones entre las variables. Esto es de mayor importancia en los casos que tenemos en mente llevar a cabo análisis multivariables.</p></li>
+<li class="fragment"><p>Por ejemplo, en análisis de covarianza (cuando una o más variables explanatorias son continuas), no tiene sentido el incluir variables altamente correlacionadas entre sí.</p></li>
+<li class="fragment"><p>Para esto, la forma más sencilla es llevar a cabo gráficos de dispersión para tantos pares posibles de combinaciones de variables continuas tengamos.</p></li>
+<li class="fragment"><p>Esto obviamente sería tedioso y propenso a errores si lo llevamos a cabo de manera manual.</p></li>
+<li class="fragment"><p>Afortunadamente R nos ofrece varias formas de llevar a cabo matrices de gráficos de dispersión</p></li>
+</ul>
+</div>
+</section>
+<section id="matrices-de-dispersión-en-r-base" class="slide level2" data-visibility="uncounted">
+<h2>Matrices de dispersión en R base</h2>
+<div class="panel-tabset">
+<ul id="tabset-16" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-16-1">Código</a></li><li><a href="#tabset-16-2">Gráfico</a></li></ul>
+<div class="tab-content">
+<div id="tabset-16-1">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb26" data-code-line-numbers="1-4|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>matriz_penguins <span class="ot">&lt;-</span> penguins[,<span class="fu">c</span>(<span class="st">"bill_length_mm"</span>,</span>
+<span id="cb26-2"><a href="#cb26-2"></a>                               <span class="st">"bill_depth_mm"</span>,</span>
+<span id="cb26-3"><a href="#cb26-3"></a>                               <span class="st">"flipper_length_mm"</span>,</span>
+<span id="cb26-4"><a href="#cb26-4"></a>                               <span class="st">"body_mass_g"</span>)]</span>
+<span id="cb26-5"><a href="#cb26-5"></a><span class="fu">pairs</span>(matriz_penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-16-2">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-41-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="matrices-de-dispersión-en-ggplot2" class="slide level2" data-visibility="uncounted">
+<h2>Matrices de dispersión en <code>ggplot2</code></h2>
+<div class="panel-tabset">
+<ul id="tabset-17" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-17-1">Código</a></li><li><a href="#tabset-17-2">Gráfico</a></li></ul>
+<div class="tab-content">
+<div id="tabset-17-1">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb27" data-code-line-numbers="1|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="fu">ggpairs</span>(matriz_penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-17-2">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-43-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-3.5" class="slide level2 smaller">
+<h2>Ejercicio 3.5</h2>
+<p>Realiza una matriz de dispersión usando los datos de casos de rotavirus en Berlín. Deja fuera de la matriz las variables <code>date</code>, <code>incidence</code> y <code>week</code>. ¿Cuáles variables crees que serían mejores para una inferencia estadística acerca de la relación clima-casos de rotavirus?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">library</span>(readxl)                           </span>
+<span id="cb28-2"><a href="#cb28-2"></a>rot_berlin <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"rotXLS.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="histogramas" class="slide level2">
@@ -1284,22 +1297,22 @@ I=\left[C_{0.25}-1.5 \times RIC ,\,C_{0.75}+1.5 \times RIC \right]
 <div class="columns">
 <div class="column fragment" style="width:50%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">hist</span>(penguins<span class="sc">$</span>bill_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">hist</span>(penguins<span class="sc">$</span>bill_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-44-1.png" width="960"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-45-1.png" width="960"></p>
 </figure>
 </div>
 </div>
 </div>
 </div><div class="column fragment" style="width:50%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">hist</span>(penguins<span class="sc">$</span>bill_length_mm, <span class="at">breaks =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">hist</span>(penguins<span class="sc">$</span>bill_length_mm, <span class="at">breaks =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-45-1.png" width="960"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-46-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1309,20 +1322,8 @@ I=\left[C_{0.25}-1.5 \times RIC ,\,C_{0.75}+1.5 \times RIC \right]
 <div class="columns">
 <div class="column fragment" style="width:50%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm)) <span class="sc">+</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-46-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column fragment" style="width:50%;">
-<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm)) <span class="sc">+</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1331,130 +1332,40 @@ I=\left[C_{0.25}-1.5 \times RIC ,\,C_{0.75}+1.5 \times RIC \right]
 </div>
 </div>
 </div>
-</div>
-</div>
-</section>
-<section id="ejercicio-3.5" class="slide level2">
-<h2>Ejercicio 3.5</h2>
-<p>Realiza histogramas para las variables <code>cases</code> y <code>TMK</code> de la tabla de datos de casos de rotavirus en Berlín.</p>
-</section>
-<section id="más-exploración" class="slide level2">
-<h2>Más exploración</h2>
-<div>
-<ul>
-<li class="fragment"><p>Lo que hemos revisado hasta el momento, son las técnicas más frecuentemente usadas para AED.</p></li>
-<li class="fragment"><p>Sin embargo, existen librerías de R que permiten también hacer AED de una manera automática y más accesible.</p></li>
-<li class="fragment"><p>Como ejemplos, haremos un enfoque en dos librerías que hacen uso de Shiny para brindar esta experiencia al usuario. Estas son <code>explore</code> y <code>dataxray</code></p></li>
-</ul>
-</div>
-<div class="fragment">
+</div><div class="column fragment" style="width:50%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">library</span>(explore)</span>
-<span id="cb32-2"><a href="#cb32-2"></a><span class="fu">explore</span>(penguins)</span>
-<span id="cb32-3"><a href="#cb32-3"></a></span>
-<span id="cb32-4"><a href="#cb32-4"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
-<span id="cb32-5"><a href="#cb32-5"></a><span class="fu">install.packages</span>(<span class="st">"flexdashboard"</span>)</span>
-<span id="cb32-6"><a href="#cb32-6"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"agstn/dataxray"</span>)</span>
-<span id="cb32-7"><a href="#cb32-7"></a><span class="fu">library</span>(dataxray)</span>
-<span id="cb32-8"><a href="#cb32-8"></a><span class="fu">report_xray</span>(<span class="at">data =</span> penguins, <span class="at">data_name =</span> <span class="st">'penguins'</span>, <span class="at">study =</span> <span class="st">"ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-48-1.png" width="960"></p>
+</figure>
 </div>
 </div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-3.6" class="slide level2">
+<h2>Ejercicio 3.6</h2>
+<p>Realiza histogramas para todas las variables de la tabla de datos del rotavirus con la excepción de <code>date</code> y <code>week</code>.</p>
 </section></section>
 <section>
-<section id="antes-de-terminar-por-hoy" class="title-slide slide level1 center">
-<h1>¡Antes de terminar por hoy!</h1>
+<section id="otras-geometrías-útiles" class="title-slide slide level1 center">
+<h1>Otras geometrías útiles</h1>
 
 </section>
-<section id="gráficos-de-barras" class="slide level2">
-<h2>Gráficos de barras</h2>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">ggplot</span>(penguins,</span>
-<span id="cb33-2"><a href="#cb33-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> species)) <span class="sc">+</span></span>
-<span id="cb33-3"><a href="#cb33-3"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-49-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="gráficos-de-barras-con-porcentajes" class="slide level2">
-<h2>Gráficos de barras con porcentajes</h2>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">ggplot</span>(penguins,</span>
-<span id="cb34-2"><a href="#cb34-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> species,</span>
-<span id="cb34-3"><a href="#cb34-3"></a>           <span class="at">y =</span> ..count..<span class="sc">/</span><span class="fu">sum</span>(..count..))) <span class="sc">+</span></span>
-<span id="cb34-4"><a href="#cb34-4"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb34-5"><a href="#cb34-5"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-50-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="gráficos-de-barras-apiladas" class="slide level2">
-<h2>Gráficos de barras apiladas</h2>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">ggplot</span>(penguins,</span>
-<span id="cb35-2"><a href="#cb35-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> island,</span>
-<span id="cb35-3"><a href="#cb35-3"></a>           <span class="at">fill =</span> species)) <span class="sc">+</span></span>
-<span id="cb35-4"><a href="#cb35-4"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"stack"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-51-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="gráficos-de-líneas" class="slide level2">
-<h2>Gráficos de líneas</h2>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">ggplot</span>(rot_berlin,</span>
-<span id="cb36-2"><a href="#cb36-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date,</span>
-<span id="cb36-3"><a href="#cb36-3"></a>           <span class="at">y =</span> cases)) <span class="sc">+</span></span>
-<span id="cb36-4"><a href="#cb36-4"></a>  <span class="fu">geom_line</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-53-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="gráficos-rápidos-de-ggplot2-qplot" class="slide level2">
-<h2>Gráficos rápidos de <code>ggplot2</code>: <code>qplot</code></h2>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">qplot</span>(bill_depth_mm, <span class="at">fill =</span> island, <span class="at">data =</span> penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-54-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="gráficos-rápidos-de-ggplot2-qplot-1" class="slide level2" data-visibility="uncounted">
-<h2>Gráficos rápidos de <code>ggplot2</code>: <code>qplot</code></h2>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">qplot</span>(body_mass_g, flipper_length_mm,<span class="at">data =</span> penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-55-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="gráficos-rápidos-de-ggplot2-qplot-2" class="slide level2" data-visibility="uncounted">
-<h2>Gráficos rápidos de <code>ggplot2</code>: <code>qplot</code></h2>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">qplot</span>(species, bill_depth_mm, <span class="at">fill =</span> species, <span class="at">data =</span> penguins, <span class="at">geom =</span> <span class="fu">c</span>(<span class="st">"boxplot"</span>, <span class="st">"jitter"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-56-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="gráficos-de-líneas-con-estadísticos-descriptivos" class="slide level2">
-<h2>Gráficos de líneas con estadísticos descriptivos</h2>
+<section id="gráficos-de-densidad" class="slide level2">
+<h2>Gráficos de densidad</h2>
 <div class="panel-tabset">
 <ul id="tabset-18" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-18-1">Código</a></li><li><a href="#tabset-18-2">Gráfico</a></li></ul>
 <div class="tab-content">
 <div id="tabset-18-1">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb40-2"><a href="#cb40-2"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb40-3"><a href="#cb40-3"></a></span>
-<span id="cb40-4"><a href="#cb40-4"></a>rot_berlin<span class="sc">$</span>mes <span class="ot">&lt;-</span> <span class="fu">month</span>(rot_berlin<span class="sc">$</span>date)</span>
-<span id="cb40-5"><a href="#cb40-5"></a>rot_berlin<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">year</span>(rot_berlin<span class="sc">$</span>date)</span>
-<span id="cb40-6"><a href="#cb40-6"></a>temp_berlin <span class="ot">&lt;-</span> rot_berlin <span class="sc">%&gt;%</span></span>
-<span id="cb40-7"><a href="#cb40-7"></a>  <span class="fu">group_by</span>(mes) <span class="sc">%&gt;%</span></span>
-<span id="cb40-8"><a href="#cb40-8"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(),</span>
-<span id="cb40-9"><a href="#cb40-9"></a>            <span class="at">media =</span> <span class="fu">mean</span>(TMK),</span>
-<span id="cb40-10"><a href="#cb40-10"></a>            <span class="at">desv =</span> <span class="fu">sd</span>(TMK),</span>
-<span id="cb40-11"><a href="#cb40-11"></a>            <span class="at">s.err =</span> desv<span class="sc">/</span><span class="fu">sqrt</span>(n)) </span>
-<span id="cb40-12"><a href="#cb40-12"></a></span>
-<span id="cb40-13"><a href="#cb40-13"></a>grafico3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(temp_berlin,</span>
-<span id="cb40-14"><a href="#cb40-14"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(mes),</span>
-<span id="cb40-15"><a href="#cb40-15"></a>           <span class="at">y =</span> media,</span>
-<span id="cb40-16"><a href="#cb40-16"></a>           <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb40-17"><a href="#cb40-17"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb40-18"><a href="#cb40-18"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb40-19"><a href="#cb40-19"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> media <span class="sc">-</span> s.err,</span>
-<span id="cb40-20"><a href="#cb40-20"></a>                    <span class="at">ymax =</span> media <span class="sc">+</span> s.err),</span>
-<span id="cb40-21"><a href="#cb40-21"></a>                <span class="at">width =</span> .<span class="dv">3</span>)</span>
-<span id="cb40-22"><a href="#cb40-22"></a>grafico3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">ggplot</span>(sub_penguins,</span>
+<span id="cb33-2"><a href="#cb33-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> bill_depth_mm, <span class="at">group=</span>species, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb33-3"><a href="#cb33-3"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-18-2">
@@ -1462,7 +1373,132 @@ I=\left[C_{0.25}-1.5 \times RIC ,\,C_{0.75}+1.5 \times RIC \right]
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-58-1.png" width="960"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-50-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="gráficos-de-barras" class="slide level2">
+<h2>Gráficos de barras</h2>
+<div class="panel-tabset">
+<ul id="tabset-19" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-19-1">Código</a></li><li><a href="#tabset-19-2">Gráfico</a></li></ul>
+<div class="tab-content">
+<div id="tabset-19-1">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">ggplot</span>(penguins,</span>
+<span id="cb34-2"><a href="#cb34-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> species)) <span class="sc">+</span></span>
+<span id="cb34-3"><a href="#cb34-3"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-19-2">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-52-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="gráficos-de-barras-apiladas" class="slide level2">
+<h2>Gráficos de barras apiladas</h2>
+<div class="panel-tabset">
+<ul id="tabset-20" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-20-1">Código</a></li><li><a href="#tabset-20-2">Gráfico</a></li></ul>
+<div class="tab-content">
+<div id="tabset-20-1">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">ggplot</span>(penguins,</span>
+<span id="cb35-2"><a href="#cb35-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> island,</span>
+<span id="cb35-3"><a href="#cb35-3"></a>           <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb35-4"><a href="#cb35-4"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"stack"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-20-2">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-54-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="gráficos-de-líneas" class="slide level2">
+<h2>Gráficos de líneas</h2>
+<div class="panel-tabset">
+<ul id="tabset-21" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-21-1">Código</a></li><li><a href="#tabset-21-2">Gráfico</a></li></ul>
+<div class="tab-content">
+<div id="tabset-21-1">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">ggplot</span>(rot_berlin,</span>
+<span id="cb36-2"><a href="#cb36-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date,</span>
+<span id="cb36-3"><a href="#cb36-3"></a>           <span class="at">y =</span> cases)) <span class="sc">+</span></span>
+<span id="cb36-4"><a href="#cb36-4"></a>  <span class="fu">geom_line</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-21-2">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-57-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="gráficos-de-líneas-con-estadísticos-descriptivos" class="slide level2">
+<h2>Gráficos de líneas con estadísticos descriptivos</h2>
+<div class="panel-tabset">
+<ul id="tabset-22" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-22-1">Código</a></li><li><a href="#tabset-22-2">Gráfico</a></li></ul>
+<div class="tab-content">
+<div id="tabset-22-1">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb37-2"><a href="#cb37-2"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb37-3"><a href="#cb37-3"></a></span>
+<span id="cb37-4"><a href="#cb37-4"></a>rot_berlin<span class="sc">$</span>mes <span class="ot">&lt;-</span> <span class="fu">month</span>(rot_berlin<span class="sc">$</span>date)</span>
+<span id="cb37-5"><a href="#cb37-5"></a>rot_berlin<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">year</span>(rot_berlin<span class="sc">$</span>date)</span>
+<span id="cb37-6"><a href="#cb37-6"></a>temp_berlin <span class="ot">&lt;-</span> rot_berlin <span class="sc">%&gt;%</span></span>
+<span id="cb37-7"><a href="#cb37-7"></a>  <span class="fu">group_by</span>(mes) <span class="sc">%&gt;%</span></span>
+<span id="cb37-8"><a href="#cb37-8"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb37-9"><a href="#cb37-9"></a>            <span class="at">media =</span> <span class="fu">mean</span>(TMK),</span>
+<span id="cb37-10"><a href="#cb37-10"></a>            <span class="at">desv =</span> <span class="fu">sd</span>(TMK),</span>
+<span id="cb37-11"><a href="#cb37-11"></a>            <span class="at">s.err =</span> desv<span class="sc">/</span><span class="fu">sqrt</span>(n)) </span>
+<span id="cb37-12"><a href="#cb37-12"></a></span>
+<span id="cb37-13"><a href="#cb37-13"></a>grafico3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(temp_berlin,</span>
+<span id="cb37-14"><a href="#cb37-14"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(mes),</span>
+<span id="cb37-15"><a href="#cb37-15"></a>           <span class="at">y =</span> media,</span>
+<span id="cb37-16"><a href="#cb37-16"></a>           <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb37-17"><a href="#cb37-17"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb37-18"><a href="#cb37-18"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb37-19"><a href="#cb37-19"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> media <span class="sc">-</span> s.err,</span>
+<span id="cb37-20"><a href="#cb37-20"></a>                    <span class="at">ymax =</span> media <span class="sc">+</span> s.err),</span>
+<span id="cb37-21"><a href="#cb37-21"></a>                <span class="at">width =</span> .<span class="dv">3</span>)</span>
+<span id="cb37-22"><a href="#cb37-22"></a>grafico3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-22-2">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-59-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1485,21 +1521,21 @@ I=\left[C_{0.25}-1.5 \times RIC ,\,C_{0.75}+1.5 \times RIC \right]
 <section id="combinando-gráficos-con-patchwork" class="slide level2">
 <h2>Combinando gráficos con <code>patchwork</code></h2>
 <div class="panel-tabset">
-<ul id="tabset-19" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-19-1">Código</a></li><li><a href="#tabset-19-2">Gráfico</a></li></ul>
+<ul id="tabset-23" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-23-1">Código</a></li><li><a href="#tabset-23-2">Gráfico</a></li></ul>
 <div class="tab-content">
-<div id="tabset-19-1">
+<div id="tabset-23-1">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb41-2"><a href="#cb41-2"></a>graficofinal <span class="ot">&lt;-</span> (grafico1 <span class="sc">|</span> grafico2) <span class="sc">/</span> grafico3</span>
-<span id="cb41-3"><a href="#cb41-3"></a>graficofinal <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">'A'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb38-2"><a href="#cb38-2"></a>graficofinal <span class="ot">&lt;-</span> (grafico1 <span class="sc">|</span> grafico2) <span class="sc">/</span> grafico3</span>
+<span id="cb38-3"><a href="#cb38-3"></a>graficofinal <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">'A'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div id="tabset-19-2">
+<div id="tabset-23-2">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-60-1.png" width="960"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-61-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1514,11 +1550,63 @@ I=\left[C_{0.25}-1.5 \times RIC ,\,C_{0.75}+1.5 \times RIC \right]
 <section id="exportando-gráficos-de-ggplot" class="slide level2 scrollable">
 <h2>Exportando gráficos de <code>ggplot</code></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>graficofinal_estavezsi <span class="ot">&lt;-</span> graficofinal <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">'A'</span>)</span>
-<span id="cb42-2"><a href="#cb42-2"></a><span class="fu">ggsave</span>(<span class="st">"grafico.png"</span>, <span class="at">plot =</span> graficofinal_estavezsi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>graficofinal_estavezsi <span class="ot">&lt;-</span> graficofinal <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">'A'</span>)</span>
+<span id="cb39-2"><a href="#cb39-2"></a><span class="fu">ggsave</span>(<span class="st">"grafico.png"</span>, <span class="at">plot =</span> graficofinal_estavezsi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="images/out.png" class="r-stretch quarto-figure-center"></section></section>
+<img data-src="images/out.png" class="r-stretch quarto-figure-center"></section>
+<section id="ejercicio-3.7" class="slide level2">
+<h2>Ejercicio 3.7</h2>
+<p>Exporta un objeto de <code>ggplot2</code> con gráficos de tu elección (6 en total) combinados con la ayuda de <code>patchwork</code> en el layout que desees a formatos .png y .pdf.</p>
+</section>
+<section id="más-exploración" class="slide level2">
+<h2>Más exploración</h2>
+<div>
+<ul>
+<li class="fragment"><p>Lo que hemos revisado hasta el momento, son las técnicas más frecuentemente usadas para AED.</p></li>
+<li class="fragment"><p>Sin embargo, existen librerías de R que permiten también hacer AED de una manera automática y más accesible.</p></li>
+<li class="fragment"><p>Como ejemplos, haremos un enfoque en dos librerías que hacen uso de Shiny para brindar esta experiencia al usuario. Estas son <code>explore</code> y <code>dataxray</code></p></li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">library</span>(explore)</span>
+<span id="cb40-2"><a href="#cb40-2"></a><span class="fu">explore</span>(penguins)</span>
+<span id="cb40-3"><a href="#cb40-3"></a></span>
+<span id="cb40-4"><a href="#cb40-4"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
+<span id="cb40-5"><a href="#cb40-5"></a><span class="fu">install.packages</span>(<span class="st">"flexdashboard"</span>)</span>
+<span id="cb40-6"><a href="#cb40-6"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"agstn/dataxray"</span>)</span>
+<span id="cb40-7"><a href="#cb40-7"></a><span class="fu">library</span>(dataxray)</span>
+<span id="cb40-8"><a href="#cb40-8"></a><span class="fu">report_xray</span>(<span class="at">data =</span> penguins, <span class="at">data_name =</span> <span class="st">'penguins'</span>, <span class="at">study =</span> <span class="st">"ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="antes-de-terminar-por-hoy" class="title-slide slide level1 center">
+<h1>¡Antes de terminar por hoy!</h1>
+
+</section>
+<section id="gráficos-rápidos-de-ggplot2-qplot" class="slide level2">
+<h2>Gráficos rápidos de <code>ggplot2</code>: <code>qplot</code></h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">qplot</span>(bill_depth_mm, <span class="at">fill =</span> island, <span class="at">data =</span> penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-64-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="gráficos-rápidos-de-ggplot2-qplot-1" class="slide level2" data-visibility="uncounted">
+<h2>Gráficos rápidos de <code>ggplot2</code>: <code>qplot</code></h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">qplot</span>(body_mass_g, flipper_length_mm,<span class="at">data =</span> penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-65-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="gráficos-rápidos-de-ggplot2-qplot-2" class="slide level2" data-visibility="uncounted">
+<h2>Gráficos rápidos de <code>ggplot2</code>: <code>qplot</code></h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">qplot</span>(species, bill_depth_mm, <span class="at">fill =</span> species, <span class="at">data =</span> penguins, <span class="at">geom =</span> <span class="fu">c</span>(<span class="st">"boxplot"</span>, <span class="st">"jitter"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-66-1.png" width="960" class="r-stretch quarto-figure-center"></section></section>
 <section id="gracias" class="title-slide slide level1 center">
 <h1>¡Gracias!</h1>
 

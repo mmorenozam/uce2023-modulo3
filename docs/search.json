@@ -270,7 +270,7 @@
     "href": "index.html#ejercicio-3.4",
     "title": "Estadística aplicada con R",
     "section": "Ejercicio 3.4",
-    "text": "Ejercicio 3.4\nRealiza una matriz de dispersión usando los datos en el archivo excel “rotXLS.xlsx” que usamos en la primera sesión. Los datos contenidos en este archivo corresponden al conteo de casos de rotavirus en Berlín desde el 2001 hasta el 2020. Las variables contenidas en este archivo son:\n\n\n\ndate: fecha de cierre de la toma de datos\ncases: número de casos de rotavirus en la semana\nweek: semana epidemiológica\nincidence: número de casos/100000 habitantes\nFM: media diaria de velocidad del viento (m/s)\nRSK: media diaria de lluvia (mm)\n\n\n\nSHK_TAG: media diaria de nieve (cm)\nPM: media diaria de presión atmosférica (hPa)\nTMK: media diaria de temperatura (°C)\nTXK: media diaria de temperatura máxima (°C)\nTNK: media diaria de temperatura mínima (°C)\nUPM: media diaria de humedad relativa (%)\n\n\n\nDeja fuera de la matriz las variables date, incidence y week. ¿Cuáles variables crees que serían mejores para una inferencia estadística acerca de la relación clima-casos de rotavirus?\n\nlibrary(readxl)                           \nrot_berlin &lt;- read_excel(\"rotXLS.xlsx\")"
+    "text": "Ejercicio 3.4\nLos datos del archivo de excel “rotXLS.xlsx” que mencionamos brevemente en el primer módulo contiene información sobre el conteo de casos de rotavirus en Berlín desde el año 2001 hasta el 2020. Las variables de esta tabla de datos son:\n\n\n\ndate: fecha de cierre de la toma de datos\ncases: número de casos de rotavirus en la semana\nweek: semana epidemiológica\nincidence: número de casos/100000 habitantes\nFM: media diaria de velocidad del viento (m/s)\nRSK: media diaria de lluvia (mm)\n\n\n\nSHK_TAG: media diaria de nieve (cm)\nPM: media diaria de presión atmosférica (hPa)\nTMK: media diaria de temperatura (°C)\nTXK: media diaria de temperatura máxima (°C)\nTNK: media diaria de temperatura mínima (°C)\nUPM: media diaria de humedad relativa (%)\n\n\n\n\nCrea un boxplot del número de casos con respecto a las semanas epidemiológicas con ggplot2 y gráficos base de R\nRemueve los outliers\n\n(Tip: convierte las semanas a factor: rot_berlin$cases &lt;- as.factor(rot_berlin$cases)\n\nsetwd(\"ponaqui/elpath/detudirectoriode/trabajo\")\nlibrary(readxl)                           \nrot_berlin &lt;- read_excel(\"rotXLS.xlsx\")"
   },
   {
     "objectID": "index.html#histogramas",
@@ -291,7 +291,7 @@
     "href": "index.html#ejercicio-3.5",
     "title": "Estadística aplicada con R",
     "section": "Ejercicio 3.5",
-    "text": "Ejercicio 3.5\nRealiza histogramas para las variables cases y TMK de la tabla de datos de casos de rotavirus en Berlín."
+    "text": "Ejercicio 3.5\nRealiza una matriz de dispersión usando los datos de casos de rotavirus en Berlín. Deja fuera de la matriz las variables date, incidence y week. ¿Cuáles variables crees que serían mejores para una inferencia estadística acerca de la relación clima-casos de rotavirus?\n\nlibrary(readxl)                           \nrot_berlin &lt;- read_excel(\"rotXLS.xlsx\")"
   },
   {
     "objectID": "index.html#más-exploración",
@@ -305,7 +305,7 @@
     "href": "index.html#gráficos-de-barras",
     "title": "Estadística aplicada con R",
     "section": "Gráficos de barras",
-    "text": "Gráficos de barras\n\nggplot(penguins,\n       aes(x = species)) +\n  geom_bar()"
+    "text": "Gráficos de barras\n\nCódigoGráfico\n\n\n\nggplot(penguins,\n       aes(x = species)) +\n  geom_bar()"
   },
   {
     "objectID": "index.html#gráficos-de-barras-con-porcentajes",
@@ -319,14 +319,14 @@
     "href": "index.html#gráficos-de-barras-apiladas",
     "title": "Estadística aplicada con R",
     "section": "Gráficos de barras apiladas",
-    "text": "Gráficos de barras apiladas\n\nggplot(penguins,\n       aes(x = island,\n           fill = species)) +\n  geom_bar(position = \"stack\")"
+    "text": "Gráficos de barras apiladas\n\nCódigoGráfico\n\n\n\nggplot(penguins,\n       aes(x = island,\n           fill = species)) +\n  geom_bar(position = \"stack\")"
   },
   {
     "objectID": "index.html#gráficos-de-líneas",
     "href": "index.html#gráficos-de-líneas",
     "title": "Estadística aplicada con R",
     "section": "Gráficos de líneas",
-    "text": "Gráficos de líneas\n\nggplot(rot_berlin,\n       aes(x = date,\n           y = cases)) +\n  geom_line()"
+    "text": "Gráficos de líneas\n\nCódigoGráfico\n\n\n\nggplot(rot_berlin,\n       aes(x = date,\n           y = cases)) +\n  geom_line()"
   },
   {
     "objectID": "index.html#gráficos-rápidos-de-ggplot2-qplot",
@@ -376,5 +376,33 @@
     "title": "Estadística aplicada con R",
     "section": "Exportando gráficos de ggplot",
     "text": "Exportando gráficos de ggplot\n\ngraficofinal_estavezsi &lt;- graficofinal + plot_annotation(tag_levels = 'A')\nggsave(\"grafico.png\", plot = graficofinal_estavezsi)"
+  },
+  {
+    "objectID": "index.html#ejercicio-3.4-1",
+    "href": "index.html#ejercicio-3.4-1",
+    "title": "Estadística aplicada con R",
+    "section": "Ejercicio 3.4",
+    "text": "Ejercicio 3.4\nRealiza una matriz de dispersión usando los datos en el archivo excel “rotXLS.xlsx” que usamos en la primera sesión. Los datos contenidos en este archivo corresponden al conteo de casos de rotavirus en Berlín desde el 2001 hasta el 2020. Las variables contenidas en este archivo son:\n\n\n\ndate: fecha de cierre de la toma de datos\ncases: número de casos de rotavirus en la semana\nweek: semana epidemiológica\nincidence: número de casos/100000 habitantes\nFM: media diaria de velocidad del viento (m/s)\nRSK: media diaria de lluvia (mm)\n\n\n\nSHK_TAG: media diaria de nieve (cm)\nPM: media diaria de presión atmosférica (hPa)\nTMK: media diaria de temperatura (°C)\nTXK: media diaria de temperatura máxima (°C)\nTNK: media diaria de temperatura mínima (°C)\nUPM: media diaria de humedad relativa (%)\n\n\n\nDeja fuera de la matriz las variables date, incidence y week. ¿Cuáles variables crees que serían mejores para una inferencia estadística acerca de la relación clima-casos de rotavirus?\n\nlibrary(readxl)                           \nrot_berlin &lt;- read_excel(\"rotXLS.xlsx\")"
+  },
+  {
+    "objectID": "index.html#ejercicio-3.6",
+    "href": "index.html#ejercicio-3.6",
+    "title": "Estadística aplicada con R",
+    "section": "Ejercicio 3.6",
+    "text": "Ejercicio 3.6\nRealiza histogramas para todas las variables de la tabla de datos del rotavirus con la excepción de date y week."
+  },
+  {
+    "objectID": "index.html#gráficos-de-densidad",
+    "href": "index.html#gráficos-de-densidad",
+    "title": "Estadística aplicada con R",
+    "section": "Gráficos de densidad",
+    "text": "Gráficos de densidad\n\nCódigoGráfico\n\n\n\nggplot(sub_penguins,\n       aes(x = bill_depth_mm, group=species, fill = species)) +\n  geom_density(alpha = 0.4)"
+  },
+  {
+    "objectID": "index.html#ejercicio-3.7",
+    "href": "index.html#ejercicio-3.7",
+    "title": "Estadística aplicada con R",
+    "section": "Ejercicio 3.7",
+    "text": "Ejercicio 3.7\nExporta un objeto de ggplot2 con gráficos de tu elección (6 en total) combinados con la ayuda de patchwork en el layout que desees a formatos .png y .pdf."
   }
 ]
